@@ -1,3 +1,3 @@
 declare module "@env" {
-  export const ACCESS_TOKEN: string;
+  export const CLIENT_ID: string;
 }
