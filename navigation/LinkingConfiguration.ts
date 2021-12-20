@@ -30,7 +30,7 @@ const linking: LinkingOptions<RootStackParamList> = {
       Modal: "modal",
       NotFound: "*",
       Auth: {
-        path: "auth",
+        path: "auth/*",
       },
     },
   },

@@ -21,8 +21,7 @@ export type RootStackParamList = {
   Modal: undefined;
   NotFound: undefined;
   Auth: {
-    code: string;
-    state: string;
+    query: string;
   };
 };
 
