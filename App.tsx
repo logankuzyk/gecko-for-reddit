@@ -6,6 +6,7 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
+import { RedditProvider } from "./contexts/RedditContext";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -17,10 +18,12 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <QueryClientProvider client={queryClient}>
-          <Navigation colorScheme={colorScheme} />
-          <StatusBar />
-        </QueryClientProvider>
+        <RedditProvider>
+          <QueryClientProvider client={queryClient}>
+            <Navigation colorScheme={colorScheme} />
+            <StatusBar />
+          </QueryClientProvider>
+        </RedditProvider>
       </SafeAreaProvider>
     );
   }
