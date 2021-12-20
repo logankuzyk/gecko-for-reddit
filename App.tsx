@@ -18,12 +18,12 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <RedditProvider>
-          <QueryClientProvider client={queryClient}>
+        <QueryClientProvider client={queryClient}>
+          <RedditProvider>
             <Navigation colorScheme={colorScheme} />
             <StatusBar />
-          </QueryClientProvider>
-        </RedditProvider>
+          </RedditProvider>
+        </QueryClientProvider>
       </SafeAreaProvider>
     );
   }
