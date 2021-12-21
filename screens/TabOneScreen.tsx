@@ -3,7 +3,8 @@ import { StyleSheet } from "react-native";
 
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
-import { RootTabScreenProps } from "../types/types";
+import { RootTabScreenProps } from "../types/navigation";
+import { LoginButton } from "../components/LoginButton";
 
 export default function TabOneScreen({
   navigation,
@@ -17,6 +18,7 @@ export default function TabOneScreen({
         darkColor="rgba(255,255,255,0.1)"
       />
       <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+      <LoginButton />
     </View>
   );
 }
