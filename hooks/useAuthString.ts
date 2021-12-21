@@ -16,9 +16,12 @@ export const useAuthString = (): ((path: string | undefined) => boolean) => {
       !Array.isArray(access_token) &&
       !Array.isArray(expires_in)
     ) {
+      const expiry = new Date();
+      expiry.setSeconds(expiry.getSeconds() + Number(expires_in));
+
       setToken({
-        access_token,
-        expires_in,
+        token: access_token,
+        expiry: expiry.getTime(),
       });
       return true;
     } else {

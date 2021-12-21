@@ -13,8 +13,8 @@ import * as SecureStore from "expo-secure-store";
 import { CLIENT_ID, AUTH_URL } from "@env";
 
 interface Token {
-  access_token: string;
-  expires_in: string;
+  token: string;
+  expiry: number;
 }
 
 interface RedditContextValue {
@@ -41,6 +41,29 @@ export const RedditProvider: React.FC = ({ children }) => {
   const [reddit, setReddit] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [token, setToken] = useState<Token | undefined>();
+
+  useEffect(() => {
+    (async () => {
+      const _token = await SecureStore.getItemAsync("token");
+
+      if (_token) {
+        setToken(JSON.parse(_token));
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (token) {
+      SecureStore.setItemAsync("token", JSON.stringify(token));
+    }
+
+    if (token && token.expiry > Date.now()) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [token]);
+
   const redirectUri = Linking.createURL("/auth/");
 
   const promptLogin = async () => {
@@ -57,22 +80,6 @@ export const RedditProvider: React.FC = ({ children }) => {
 
     await WebBrowser.openBrowserAsync(loginUrl);
   };
-
-  useEffect(() => {
-    (async () => {
-      const _token = await SecureStore.getItemAsync("token");
-
-      if (_token) {
-        setToken(JSON.parse(_token));
-      }
-    })();
-  }, []);
-
-  useEffect(() => {
-    if (token) {
-      SecureStore.setItemAsync("token", JSON.stringify(token));
-    }
-  }, [token]);
 
   return (
     <RedditContext.Provider
