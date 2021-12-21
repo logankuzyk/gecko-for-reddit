@@ -28,5 +28,7 @@ const fetchClientCredentials = async () => {
 };
 
 export const useClientCredentials = () => {
-  return useQuery("clientCredentials", fetchClientCredentials);
+  return useQuery("clientCredentials", fetchClientCredentials, {
+    refetchInterval: 60 * 60 * 1000,
+  });
 };

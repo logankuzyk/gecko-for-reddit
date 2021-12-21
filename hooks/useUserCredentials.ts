@@ -36,6 +36,7 @@ export const useUserCredentials = (
     () => fetchUserCredentials(accessCode!, redirectUri!),
     {
       enabled: !!accessCode && !!redirectUri,
+      refetchInterval: 60 * 60 * 1000,
     }
   );
 };
