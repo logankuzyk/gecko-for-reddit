@@ -4,9 +4,11 @@ import React, {
   useState,
   SetStateAction,
   Dispatch,
+  useEffect,
 } from "react";
 import * as WebBrowser from "expo-web-browser";
 import * as Linking from "expo-linking";
+import * as SecureStore from "expo-secure-store";
 
 import { CLIENT_ID, AUTH_URL } from "@env";
 
@@ -55,6 +57,22 @@ export const RedditProvider: React.FC = ({ children }) => {
 
     await WebBrowser.openBrowserAsync(loginUrl);
   };
+
+  useEffect(() => {
+    (async () => {
+      const _token = await SecureStore.getItemAsync("token");
+
+      if (_token) {
+        setToken(JSON.parse(_token));
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (token) {
+      SecureStore.setItemAsync("token", JSON.stringify(token));
+    }
+  }, [token]);
 
   return (
     <RedditContext.Provider
