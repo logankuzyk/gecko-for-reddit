@@ -27,6 +27,7 @@ import {
   RootTabScreenProps,
 } from "../types/navigation";
 import LinkingConfiguration from "./LinkingConfiguration";
+import SubredditScreen from "../screens/Subreddit";
 
 export default function Navigation({
   colorScheme,
@@ -57,6 +58,7 @@ function RootNavigator() {
         component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
+      <Stack.Screen name="Subreddit" component={SubredditScreen} />
       <Stack.Screen name="Auth" component={AuthScreen} />
       <Stack.Screen
         name="NotFound"

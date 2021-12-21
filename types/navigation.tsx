@@ -24,6 +24,7 @@ export type RootStackParamList = {
     code: string;
     state: string;
   };
+  Subreddit: {};
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
