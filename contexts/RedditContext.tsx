@@ -9,15 +9,15 @@ import React, {
 import * as WebBrowser from "expo-web-browser";
 import * as Linking from "expo-linking";
 import * as SecureStore from "expo-secure-store";
-import { useQueryClient } from "react-query";
 
 import { CLIENT_ID, AUTH_URL } from "@env";
 import { useClientCredentials } from "../hooks/useClientCredentials";
 import { useUserCredentials } from "../hooks/useUserCredentials";
 
 interface Token {
-  token: string;
+  accessToken: string;
   expiry: number;
+  refreshToken?: string;
 }
 
 interface RedditContextValue {
@@ -64,7 +64,6 @@ export const RedditProvider: React.FC = ({ children }) => {
   >();
   const clientToken = useClientCredentials();
   const userToken = useUserCredentials(accessCode, redirectUri);
-  const queryClient = useQueryClient();
 
   // CREDENTIAL QUERIES
 
@@ -75,21 +74,21 @@ export const RedditProvider: React.FC = ({ children }) => {
         expiry.getSeconds() + Number(clientToken.data.expires_in)
       );
       setClientCredentials({
-        token: clientToken.data.access_token,
+        accessToken: clientToken.data.access_token,
         expiry: expiry.getTime(),
       });
     }
   }, [clientToken.status]);
 
   useEffect(() => {
-    console.log(userToken.status);
     if (userToken.isSuccess && userToken.data) {
       const expiry = new Date();
       expiry.setSeconds(
         expiry.getSeconds() + Number(userToken.data.expires_in)
       );
       setUserCredentials({
-        token: userToken.data.access_token,
+        accessToken: userToken.data.access_token,
+        refreshToken: userToken.data.refresh_token,
         expiry: expiry.getTime(),
       });
     }
