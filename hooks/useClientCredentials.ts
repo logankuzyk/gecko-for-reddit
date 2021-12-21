@@ -2,12 +2,12 @@ import axios from "axios";
 import base64 from "react-native-base64";
 import { useQuery } from "react-query";
 
-import { TOKEN_URL, CLIENT_ID } from "@env";
+import { TOKEN_URL, CLIENT_ID, CLIENT_TOKEN_URL } from "@env";
 import { ClientCredentialsResponse } from "../types/oauth";
 
 const fetchClientCredentials = async () => {
   const data = new URLSearchParams();
-  data.append("grant_type", "https://oauth.reddit.com/grants/installed_client");
+  data.append("grant_type", CLIENT_TOKEN_URL);
   data.append("device_id", "DO_NOT_TRACK_THIS_DEVICE");
 
   const res = await axios.post<ClientCredentialsResponse>(
