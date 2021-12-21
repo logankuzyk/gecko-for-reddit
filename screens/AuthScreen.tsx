@@ -2,22 +2,16 @@ import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 
 import { Text, View } from "../components/Themed";
-import { RootStackScreenProps } from "../types/types";
-import { useAuthString } from "../hooks/useAuthString";
+import { RootStackScreenProps } from "../types/navigation";
+import { useRedditContext } from "../contexts/RedditContext";
 
-export default function AuthScreen({
-  navigation,
-  route,
-}: RootStackScreenProps<"Auth">) {
-  const parse = useAuthString();
-
+export default function AuthScreen({ route }: RootStackScreenProps<"Auth">) {
+  const { setAccessCode, setStateCode } = useRedditContext();
   useEffect(() => {
-    if (route.path) {
-      const success = parse(route.path);
-      if (success) {
-        navigation.popToTop();
-      }
-    }
+    const { code, state } = route.params;
+    // reddit adds a "_#" to the end of the redirect!
+    setAccessCode(code.slice(0, -2));
+    setStateCode(state);
   }, []);
 
   return (

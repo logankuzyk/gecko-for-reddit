@@ -7,7 +7,7 @@
 import { LinkingOptions } from "@react-navigation/native";
 import * as Linking from "expo-linking";
 
-import { RootStackParamList } from "../types/types";
+import { RootStackParamList } from "../types/navigation";
 
 const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.makeUrl("/")],
@@ -30,7 +30,7 @@ const linking: LinkingOptions<RootStackParamList> = {
       Modal: "modal",
       NotFound: "*",
       Auth: {
-        path: "auth/*",
+        path: "auth",
       },
     },
   },
