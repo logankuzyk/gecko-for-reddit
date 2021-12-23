@@ -54,7 +54,6 @@ export const useRedditContext = () => {
 
 export const RedditProvider: React.FC = ({ children }) => {
   const redirectUri = Linking.createURL("/auth");
-  const [reddit, setReddit] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [accessCode, setAccessCode] = useState<string>();
   const [stateCode, setStateCode] = useState<string>();
