@@ -1,11 +1,13 @@
-import axios from "axios";
 import base64 from "react-native-base64";
 import { useQuery } from "react-query";
+import { AxiosInstance } from "axios";
 
 import { TOKEN_URL, CLIENT_ID } from "@env";
 import { TokenResponse } from "../types/oauth";
+import { useAxios } from "./useAxios";
 
 const fetchUserCredentials = async (
+  axios: AxiosInstance,
   accessCode: string,
   redirectUri: string
 ) => {
@@ -31,9 +33,10 @@ export const useUserCredentials = (
   accessCode: string | undefined,
   redirectUri: string | undefined
 ) => {
+  const axios = useAxios();
   return useQuery(
     ["userCredentials", accessCode, redirectUri],
-    () => fetchUserCredentials(accessCode!, redirectUri!),
+    () => fetchUserCredentials(axios, accessCode!, redirectUri!),
     {
       enabled: !!accessCode && !!redirectUri,
       refetchInterval: 60 * 60 * 1000,
