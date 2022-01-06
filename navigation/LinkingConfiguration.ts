@@ -32,6 +32,9 @@ const linking: LinkingOptions<RootStackParamList> = {
       Auth: {
         path: "auth",
       },
+      Subreddit: {
+        path: "/r/:subreddit/",
+      },
     },
   },
 };

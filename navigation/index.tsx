@@ -52,7 +52,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Subreddit">
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}
