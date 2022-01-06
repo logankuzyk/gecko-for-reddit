@@ -1,22 +1,26 @@
 import React from "react";
 
 import { View } from "react-native";
-import { Chip } from "react-native-paper";
+import { Caption } from "react-native-paper";
 
 interface TaglineProps {
-  author: string;
-  date: Date;
+  content: Array<string>;
 }
 
-export const Tagline: React.FC<TaglineProps> = ({ author, date }) => {
+export const Tagline: React.FC<TaglineProps> = ({ content }) => {
   return (
     <View
       style={{
         flexDirection: "row",
       }}
     >
-      <Chip>{author}</Chip>
-      <Chip>{date.toDateString()}</Chip>
+      {content.map((item, index, array) => {
+        if (index !== array.length - 1) {
+          return <Caption>{item} • </Caption>;
+        } else {
+          return <Caption>{item}</Caption>;
+        }
+      })}
     </View>
   );
 };

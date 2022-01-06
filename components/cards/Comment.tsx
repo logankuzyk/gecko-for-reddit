@@ -19,7 +19,7 @@ export const CommentCard: React.FC<CommentCardProps> = ({
   return (
     <Card style={{ marginBottom: 4 }}>
       <Card.Content>
-        <Tagline author={author} date={date} />
+        <Tagline content={[author, date.toDateString()]} />
       </Card.Content>
       <Card.Content>
         <Paragraph>{content}</Paragraph>
