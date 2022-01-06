@@ -28,6 +28,7 @@ import {
 } from "../types/navigation";
 import LinkingConfiguration from "./LinkingConfiguration";
 import SubredditScreen from "../screens/Subreddit";
+import CommentsScreen from "../screens/Comments";
 
 export default function Navigation({
   colorScheme,
@@ -59,6 +60,7 @@ function RootNavigator() {
         options={{ headerShown: false }}
       />
       <Stack.Screen name="Subreddit" component={SubredditScreen} />
+      <Stack.Screen name="Comments" component={CommentsScreen} />
       <Stack.Screen name="Auth" component={AuthScreen} />
       <Stack.Screen
         name="NotFound"

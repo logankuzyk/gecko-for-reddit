@@ -35,6 +35,9 @@ const linking: LinkingOptions<RootStackParamList> = {
       Subreddit: {
         path: "/r/:subreddit/",
       },
+      Comments: {
+        path: "/r/:subreddit/comments/:postId",
+      },
     },
   },
 };

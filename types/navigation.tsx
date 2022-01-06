@@ -27,6 +27,10 @@ export type RootStackParamList = {
   Subreddit: {
     subreddit: string;
   };
+  Comments: {
+    subreddit: string;
+    postId: string;
+  };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

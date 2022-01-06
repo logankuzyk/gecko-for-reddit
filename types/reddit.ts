@@ -30,6 +30,7 @@ export interface RedditContent {
 export interface Comment extends RedditContent {
   parent_id: string; // technically parent fullname
   is_submitter: boolean;
+  body: string;
 }
 
 export interface Submission extends RedditContent {
