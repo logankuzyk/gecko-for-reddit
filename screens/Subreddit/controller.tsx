@@ -8,14 +8,17 @@ import { useSubreddit } from "../../hooks/useSubreddit";
 
 interface SubredditScreenControllerProps {
   navigation: NativeStackNavigationProp<RootStackParamList, "Subreddit">;
+  subreddit: string;
 }
 
-export const SubredditScreenController: React.FC<SubredditScreenControllerProps> =
-  ({}) => {
-    const submissions = useSubreddit("all");
-    if (submissions.isSuccess) {
-      return <SubredditScreenView submissions={submissions.data} />;
-    } else {
-      return <ActivityIndicator animating={submissions.isLoading} />;
-    }
-  };
+export const SubredditScreenController: React.FC<
+  SubredditScreenControllerProps
+> = ({ navigation, subreddit }) => {
+  const submissions = useSubreddit(subreddit);
+
+  if (submissions.isSuccess) {
+    return <SubredditScreenView submissions={submissions.data} />;
+  } else {
+    return <ActivityIndicator animating={submissions.isLoading} />;
+  }
+};

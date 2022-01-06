@@ -5,8 +5,13 @@ import { RootStackScreenProps } from "../../types/navigation";
 
 const SettingsScreenProvider: React.FC<RootStackScreenProps<"Subreddit">> = ({
   navigation,
+  route,
 }) => {
-  return <SubredditScreenController navigation={navigation} />;
+  const subreddit = "all";
+
+  return (
+    <SubredditScreenController navigation={navigation} subreddit={subreddit} />
+  );
 };
 
 export default SettingsScreenProvider;
