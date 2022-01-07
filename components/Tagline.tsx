@@ -16,9 +16,9 @@ export const Tagline: React.FC<TaglineProps> = ({ content }) => {
     >
       {content.map((item, index, array) => {
         if (index !== array.length - 1) {
-          return <Caption>{item} • </Caption>;
+          return <Caption key={index.toString()}>{item} • </Caption>;
         } else {
-          return <Caption>{item}</Caption>;
+          return <Caption key={index.toString()}>{item}</Caption>;
         }
       })}
     </View>
