@@ -27,19 +27,27 @@ export interface RedditContent {
   archived: boolean;
 }
 
-export interface Comment extends RedditContent {
+export interface RawComment extends RedditContent {
   parent_id: string; // technically parent fullname
   is_submitter: boolean;
   body: string;
 }
 
-export interface Submission extends RedditContent {
+export interface RawSubmission extends RedditContent {
   title: string;
   domain: string;
   is_self: boolean;
   locked: boolean;
   selftext?: string;
   is_original_content: boolean;
+}
+
+export interface Submission extends RawSubmission {
+  type: "submission";
+}
+
+export interface Comment extends RawComment {
+  type: "comment";
 }
 
 export interface ReplyableContent extends RedditContent {
