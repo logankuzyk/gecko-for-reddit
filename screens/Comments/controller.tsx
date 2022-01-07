@@ -15,11 +15,16 @@ interface CommentsScreenControllerProps {
 export const CommentsScreenController: React.FC<
   CommentsScreenControllerProps
 > = ({ subreddit, postId }) => {
-  const comments = useComments(subreddit, postId);
+  const content = useComments(subreddit, postId);
 
-  if (comments.isSuccess) {
-    return <CommentsScreenView comments={comments.data} />;
+  if (content.isSuccess) {
+    return (
+      <CommentsScreenView
+        submission={content.data[0]}
+        comments={content.data[1]}
+      />
+    );
   } else {
-    return <ActivityIndicator animating={comments.isLoading} />;
+    return <ActivityIndicator animating={content.isLoading} />;
   }
 };
