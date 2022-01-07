@@ -6,30 +6,24 @@ import { Comment } from "../../types/reddit";
 import { Tagline } from "../Tagline";
 
 interface CommentCardProps {
-  author: string;
-  date: Date;
-  content: React.ReactNode;
+  comment: Comment;
 }
 
-export const CommentCard: React.FC<CommentCardProps> = ({
-  author,
-  date,
-  content,
-}) => {
+export const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
+  const date = new Date(comment.created * 1000);
+
   return (
     <Card style={{ marginBottom: 4 }}>
       <Card.Content>
-        <Tagline content={[author, date.toDateString()]} />
+        <Tagline content={[comment.author, date.toDateString()]} />
       </Card.Content>
       <Card.Content>
-        <Paragraph>{content}</Paragraph>
+        <Paragraph>{comment.body}</Paragraph>
       </Card.Content>
     </Card>
   );
 };
 
 export const renderItem: ListRenderItem<Comment> = ({ item }) => {
-  const date = new Date(item.created * 1000);
-
-  return <CommentCard author={item.author} date={date} content={item.body} />;
+  return <CommentCard comment={item} />;
 };

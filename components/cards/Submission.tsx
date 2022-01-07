@@ -7,26 +7,18 @@ import { Submission } from "../../types/reddit";
 import { Tagline } from "../Tagline";
 
 interface SubmissionCardProps {
-  title: string;
-  author: string;
-  date: Date;
-  content: React.ReactNode;
-  postId: string;
-  subreddit: string;
+  submission: Submission;
 }
 
 export const SubmissionCard: React.FC<SubmissionCardProps> = ({
-  title,
-  author,
-  date,
-  content,
-  postId,
-  subreddit,
+  submission,
 }) => {
   const navigation = useNavigation();
+  const { title, author, created, id, subreddit } = submission;
+  const date = new Date(created * 1000);
 
   const goToComments = () => {
-    navigation.navigate("Comments", { postId, subreddit });
+    navigation.navigate("Comments", { postId: id, subreddit });
   };
 
   return (
@@ -35,22 +27,10 @@ export const SubmissionCard: React.FC<SubmissionCardProps> = ({
         <Title>{title}</Title>
         <Tagline content={[author, date.toDateString()]} />
       </Card.Content>
-      {/* <Card.Content>{content}</Card.Content> */}
     </Card>
   );
 };
 
 export const renderItem: ListRenderItem<Submission> = ({ item }) => {
-  const date = new Date(item.created * 1000);
-
-  return (
-    <SubmissionCard
-      title={item.title}
-      author={item.author}
-      date={date}
-      content={""}
-      postId={item.id}
-      subreddit={item.subreddit}
-    />
-  );
+  return <SubmissionCard submission={item} />;
 };
