@@ -25,13 +25,14 @@ export interface RedditContent {
   url: string;
   spoiler: boolean;
   archived: boolean;
-  replies?: Listing<RawComment>;
 }
 
 export interface RawComment extends RedditContent {
   parent_id: string; // technically parent fullname
   is_submitter: boolean;
   body: string;
+  depth: number;
+  replies?: Listing<ListedRawComment>;
 }
 
 export type ListedRawComment =
@@ -46,7 +47,7 @@ export type ListedRawComment =
 
 export type CommentType = {
   t1: RawComment;
-  more: MoreChildren;
+  more: RawMoreChildren;
 };
 
 export interface RawSubmission extends RedditContent {
@@ -63,13 +64,17 @@ export interface ListedRawSubmission {
   data: RawSubmission;
 }
 
-export interface MoreChildren {
+export interface RawMoreChildren {
   count: number;
   name: string;
   id: string;
   parent_id: string;
   depth: number;
   children: Array<string>;
+}
+
+export interface MoreChildren extends RawMoreChildren {
+  type: "more";
 }
 
 export interface Submission extends RawSubmission {
@@ -80,6 +85,7 @@ export interface Submission extends RawSubmission {
 export interface Comment extends RawComment {
   type: "comment";
   date: Date;
+  replyTree: Array<Comment | MoreChildren>;
 }
 
 export interface ReplyableContent extends RedditContent {
