@@ -2,12 +2,12 @@ import React from "react";
 import { FlatList, View } from "react-native";
 
 import { renderItem } from "../../components/MixedContentList";
-import { SubmissionCard } from "../../components/cards/Submission";
-import { Submission, Comment } from "../../types/reddit";
+import { Submission, Comment, MoreChildren } from "../../types/reddit";
+import { Seperator } from "../../components/cards/Seperator";
 
 interface CommentsScreenViewProps {
   submission: Submission;
-  comments: Comment[];
+  comments: Array<Comment | MoreChildren>;
 }
 
 export const CommentsScreenView: React.FC<CommentsScreenViewProps> = ({
@@ -27,6 +27,7 @@ export const CommentsScreenView: React.FC<CommentsScreenViewProps> = ({
         data={data}
         keyExtractor={({ id }) => id}
         renderItem={renderItem}
+        ItemSeparatorComponent={Seperator}
       />
     </View>
   );

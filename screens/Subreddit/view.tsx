@@ -3,6 +3,7 @@ import { FlatList, View } from "react-native";
 
 import { renderItem } from "../../components/cards/Submission";
 import { Submission } from "../../types/reddit";
+import { Seperator } from "../../components/cards/Seperator";
 
 interface SubredditScreenViewProps {
   submissions: Submission[];
@@ -22,6 +23,7 @@ export const SubredditScreenView: React.FC<SubredditScreenViewProps> = ({
         data={submissions}
         keyExtractor={({ id }) => id}
         renderItem={renderItem}
+        ItemSeparatorComponent={Seperator}
       />
     </View>
   );
