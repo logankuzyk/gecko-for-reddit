@@ -3,21 +3,18 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from "@expo/vector-icons";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createDrawerNavigator } from "@react-navigation/drawer";
 import * as React from "react";
-import { ColorSchemeName, Pressable } from "react-native";
+import { ColorSchemeName } from "react-native";
 
 import NotFoundScreen from "../screens/NotFoundScreen";
 import AuthScreen from "../screens/AuthScreen";
-import { RootStackParamList, RootDrawerParamList } from "../types/navigation";
+import { RootStackParamList } from "../types/navigation";
 import LinkingConfiguration from "./LinkingConfiguration";
 import SubredditScreen from "../screens/Subreddit";
 import CommentsScreen from "../screens/Comments";
@@ -33,7 +30,7 @@ export default function Navigation({
       linking={LinkingConfiguration}
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
-      <RootDrawerNavigator />
+      <RootNavigator />
     </NavigationContainer>
   );
 }
@@ -48,15 +45,14 @@ function RootNavigator() {
   return (
     <Stack.Navigator
       initialRouteName="Subreddit"
-      screenOptions={{ headerShown: false }}
+      screenOptions={{ headerShown: true, header: NavigationHeader }}
     >
-      {/* <Stack.Screen
-        name="Root"
-        component={BottomTabNavigator}
-        options={{ headerShown: false }}
-      /> */}
       <Stack.Screen name="Subreddit" component={SubredditScreen} />
-      <Stack.Screen name="Comments" component={CommentsScreen} />
+      <Stack.Screen
+        name="Comments"
+        component={CommentsScreen}
+        options={{ gestureEnabled: true, presentation: "modal" }}
+      />
       <Stack.Screen name="Auth" component={AuthScreen} />
       <Stack.Screen
         name="NotFound"
@@ -64,15 +60,5 @@ function RootNavigator() {
         options={{ title: "Oops!" }}
       />
     </Stack.Navigator>
-  );
-}
-
-const Drawer = createDrawerNavigator<RootDrawerParamList>();
-
-function RootDrawerNavigator() {
-  return (
-    <Drawer.Navigator screenOptions={{ header: NavigationHeader }}>
-      <Drawer.Screen name="Root" component={RootNavigator} />
-    </Drawer.Navigator>
   );
 }

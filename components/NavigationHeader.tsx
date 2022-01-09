@@ -1,18 +1,12 @@
 import React from "react";
 import { Appbar, Button, Text } from "react-native-paper";
-import { DrawerHeaderProps } from "@react-navigation/drawer";
+import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 
-export const NavigationHeader: React.FC<DrawerHeaderProps> = ({
+export const NavigationHeader: React.FC<NativeStackHeaderProps> = ({
   navigation,
 }) => {
   return (
     <Appbar.Header>
-      <Button
-        onPress={navigation.openDrawer}
-        style={{ backgroundColor: "blue" }}
-      >
-        haii
-      </Button>
       <Appbar.Content title={navigation.getState().routes[0].name} />
     </Appbar.Header>
   );
