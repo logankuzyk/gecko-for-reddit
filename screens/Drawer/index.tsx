@@ -6,7 +6,7 @@ import { RootDrawerScreenController } from "./controller";
 const SettingsScreenProvider: React.FC<DrawerContentComponentProps> = ({
   navigation,
 }) => {
-  return <RootDrawerScreenController />;
+  return <RootDrawerScreenController navigation={navigation} />;
 };
 
 export default SettingsScreenProvider;
