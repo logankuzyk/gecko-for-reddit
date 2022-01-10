@@ -7,9 +7,7 @@ const SettingsScreenProvider: React.FC<RootStackScreenProps<"Subreddit">> = ({
   navigation,
   route,
 }) => {
-  const subreddit = route.params.subreddit
-    ? route.params.subreddit
-    : "victoriabc";
+  const subreddit = route.params ? route.params.subreddit : "victoriabc";
 
   return (
     <SubredditScreenController navigation={navigation} subreddit={subreddit} />
