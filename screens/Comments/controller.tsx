@@ -1,5 +1,5 @@
 import React from "react";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { ActivityIndicator } from "react-native-paper";
 
 import { CommentsScreenView } from "./view";
@@ -7,7 +7,7 @@ import { RootStackParamList } from "../../types/navigation";
 import { useComments } from "../../hooks/useComments";
 
 interface CommentsScreenControllerProps {
-  navigation: NativeStackNavigationProp<RootStackParamList, "Comments">;
+  navigation: StackNavigationProp<RootStackParamList, "Comments">;
   subreddit: string;
   postId: string;
 }

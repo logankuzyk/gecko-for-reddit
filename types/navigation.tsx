@@ -1,9 +1,5 @@
-/**
- * Learn more about using TypeScript with React Navigation:
- * https://reactnavigation.org/docs/typescript/
- */
-
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { DrawerScreenProps } from "@react-navigation/drawer";
+import { StackScreenProps } from "@react-navigation/stack";
 
 declare global {
   namespace ReactNavigation {
@@ -29,4 +25,11 @@ export type RootStackParamList = {
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
-  NativeStackScreenProps<RootStackParamList, Screen>;
+  StackScreenProps<RootStackParamList, Screen>;
+
+export type DrawerParamList = {
+  Root: undefined;
+};
+
+export type DrawerParamScreenProps<Screen extends keyof DrawerParamList> =
+  DrawerScreenProps<DrawerParamList, Screen>;

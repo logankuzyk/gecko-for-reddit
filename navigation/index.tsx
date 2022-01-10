@@ -8,17 +8,22 @@ import {
   DefaultTheme,
   DarkTheme,
 } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from "@react-navigation/stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
 
 import NotFoundScreen from "../screens/NotFoundScreen";
 import AuthScreen from "../screens/AuthScreen";
-import { RootStackParamList } from "../types/navigation";
+import { DrawerParamList, RootStackParamList } from "../types/navigation";
 import LinkingConfiguration from "./LinkingConfiguration";
 import SubredditScreen from "../screens/Subreddit";
 import CommentsScreen from "../screens/Comments";
 import { NavigationHeader } from "../components/NavigationHeader";
+import DrawerScreen from "../screens/Drawer";
 
 export default function Navigation({
   colorScheme,
@@ -30,28 +35,44 @@ export default function Navigation({
       linking={LinkingConfiguration}
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
-      <RootNavigator />
+      <DrawerNavigator />
     </NavigationContainer>
   );
 }
 
-/**
- * A root stack navigator is often used for displaying modals on top of all other content.
- * https://reactnavigation.org/docs/modal
- */
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Drawer = createDrawerNavigator<DrawerParamList>();
+
+function DrawerNavigator() {
+  return (
+    <Drawer.Navigator
+      initialRouteName="Root"
+      screenOptions={{ headerShown: false }}
+      drawerContent={DrawerScreen}
+    >
+      <Drawer.Screen name="Root" component={RootNavigator} />
+    </Drawer.Navigator>
+  );
+}
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
     <Stack.Navigator
       initialRouteName="Subreddit"
-      screenOptions={{ headerShown: true, header: NavigationHeader }}
+      screenOptions={{
+        headerShown: true,
+        header: NavigationHeader,
+        gestureEnabled: true,
+        animationEnabled: true,
+        ...TransitionPresets.SlideFromRightIOS,
+      }}
     >
       <Stack.Screen name="Subreddit" component={SubredditScreen} />
       <Stack.Screen
         name="Comments"
         component={CommentsScreen}
-        options={{ gestureEnabled: true, presentation: "modal" }}
+        options={{ presentation: "card" }}
       />
       <Stack.Screen name="Auth" component={AuthScreen} />
       <Stack.Screen
