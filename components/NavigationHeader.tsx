@@ -1,13 +1,14 @@
 import React from "react";
 import { Appbar, Button, Text } from "react-native-paper";
-import { NativeStackHeaderProps } from "@react-navigation/native-stack";
+import { StackHeaderProps } from "@react-navigation/stack";
 
-export const NavigationHeader: React.FC<NativeStackHeaderProps> = ({
+export const NavigationHeader: React.FC<StackHeaderProps> = ({
   navigation,
+  options,
 }) => {
   return (
     <Appbar.Header>
-      <Appbar.Content title={navigation.getState().routes[0].name} />
+      <Appbar.Content title={options.headerTitle} />
     </Appbar.Header>
   );
 };
