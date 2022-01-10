@@ -25,6 +25,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
       mode="outlined"
       error={error}
       autoCapitalize="none"
+      outlineColor="rgba(0,0,0,0)"
     />
   );
 };
