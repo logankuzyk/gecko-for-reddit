@@ -3,24 +3,21 @@ import { View, ListRenderItem } from "react-native";
 import { Card, Paragraph } from "react-native-paper";
 
 import { ChildIndent } from "./ChildIndent";
-import { Comment, MoreChildren } from "../../types/reddit";
+import { RedditComment, MoreChildren } from "../../../types/reddit";
 import { Tagline } from "../Tagline";
 
-interface CommentCardProps {
-  data: Comment | MoreChildren;
+interface CommentProps {
+  data: RedditComment | MoreChildren;
   depth?: number;
 }
 
-export const CommentCard: React.FC<CommentCardProps> = ({
-  data,
-  depth = 0,
-}) => {
+export const Comment: React.FC<CommentProps> = ({ data, depth = 0 }) => {
   if (data.type === "comment") {
     const { author, date, body } = data;
     const child =
       data.replyTree.length > 0 ? (
         <ChildIndent depth={data.depth + 1}>
-          <CommentCard data={data.replyTree[0]} />
+          <Comment data={data.replyTree[0]} />
         </ChildIndent>
       ) : (
         <></>
@@ -49,6 +46,6 @@ export const CommentCard: React.FC<CommentCardProps> = ({
   }
 };
 
-export const renderItem: ListRenderItem<Comment> = ({ item }) => {
-  return <CommentCard data={item} />;
+export const renderItem: ListRenderItem<RedditComment> = ({ item }) => {
+  return <Comment data={item} />;
 };

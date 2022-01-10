@@ -1,13 +1,17 @@
 import React from "react";
 import { FlatList, View } from "react-native";
 
-import { renderItem } from "../../components/MixedContentList";
-import { Submission, Comment, MoreChildren } from "../../types/reddit";
-import { Seperator } from "../../components/cards/Seperator";
+import { renderItem } from "../../components/reddit/lists/MixedContentList";
+import {
+  RedditSubmission,
+  RedditComment,
+  MoreChildren,
+} from "../../types/reddit";
+import { Seperator } from "../../components/reddit/lists/Seperator";
 
 interface CommentsScreenViewProps {
-  submission: Submission;
-  comments: Array<Comment | MoreChildren>;
+  submission: RedditSubmission;
+  comments: Array<RedditComment | MoreChildren>;
 }
 
 export const CommentsScreenView: React.FC<CommentsScreenViewProps> = ({

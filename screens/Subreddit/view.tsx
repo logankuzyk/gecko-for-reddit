@@ -1,12 +1,12 @@
 import React from "react";
 import { FlatList, View } from "react-native";
 
-import { renderItem } from "../../components/cards/Submission";
-import { Submission } from "../../types/reddit";
-import { Seperator } from "../../components/cards/Seperator";
+import { renderItem } from "../../components/reddit/submissions/Submission";
+import { RedditSubmission } from "../../types/reddit";
+import { Seperator } from "../../components/reddit/lists/Seperator";
 
 interface SubredditScreenViewProps {
-  submissions: Submission[];
+  submissions: RedditSubmission[];
 }
 
 export const SubredditScreenView: React.FC<SubredditScreenViewProps> = ({

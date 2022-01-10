@@ -2,12 +2,16 @@ import { AxiosInstance } from "axios";
 import { useQuery } from "react-query";
 
 import { useAxios } from "./useAxios";
-import { Listing, Submission, ListedRawSubmission } from "../types/reddit";
+import {
+  Listing,
+  RedditSubmission,
+  ListedRawSubmission,
+} from "../types/reddit";
 
 const fetchSubreddit = async (
   axios: AxiosInstance,
   subreddit: string
-): Promise<Submission[]> => {
+): Promise<RedditSubmission[]> => {
   const res = await axios.get<Listing<ListedRawSubmission>>(
     `/r/${subreddit}.json`
   );

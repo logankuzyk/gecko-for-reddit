@@ -3,11 +3,11 @@ import { ListRenderItem } from "react-native";
 import { Card, Title } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
-import { Submission } from "../../types/reddit";
+import { RedditSubmission } from "../../../types/reddit";
 import { Tagline } from "../Tagline";
 
 interface SubmissionCardProps {
-  submission: Submission;
+  submission: RedditSubmission;
 }
 
 export const SubmissionCard: React.FC<SubmissionCardProps> = ({
@@ -30,6 +30,6 @@ export const SubmissionCard: React.FC<SubmissionCardProps> = ({
   );
 };
 
-export const renderItem: ListRenderItem<Submission> = ({ item }) => {
+export const renderItem: ListRenderItem<RedditSubmission> = ({ item }) => {
   return <SubmissionCard submission={item} />;
 };

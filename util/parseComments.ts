@@ -1,15 +1,15 @@
-import { Comment, ListedRawComment, MoreChildren } from "../types/reddit";
+import { RedditComment, ListedRawComment, MoreChildren } from "../types/reddit";
 
 export const parseComments = (
   comments: ListedRawComment[]
-): Array<Comment | MoreChildren> => {
-  const output: Array<Comment | MoreChildren> = [];
+): Array<RedditComment | MoreChildren> => {
+  const output: Array<RedditComment | MoreChildren> = [];
   comments.forEach((item) => {
     if (item.kind === "t1") {
       const replies = item.data.replies
         ? parseComments(item.data.replies.data.children)
         : [];
-      const comment: Comment = {
+      const comment: RedditComment = {
         type: "comment",
         date: new Date(item.data.created * 1000),
         replyTree: replies,

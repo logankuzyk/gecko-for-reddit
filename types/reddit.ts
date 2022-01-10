@@ -77,15 +77,15 @@ export interface MoreChildren extends RawMoreChildren {
   type: "more";
 }
 
-export interface Submission extends RawSubmission {
+export interface RedditSubmission extends RawSubmission {
   type: "submission";
   date: Date;
 }
 
-export interface Comment extends RawComment {
+export interface RedditComment extends RawComment {
   type: "comment";
   date: Date;
-  replyTree: Array<Comment | MoreChildren>;
+  replyTree: Array<RedditComment | MoreChildren>;
 }
 
 export interface ReplyableContent extends RedditContent {

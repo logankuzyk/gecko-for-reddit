@@ -5,8 +5,8 @@ import { parseComments } from "../util/parseComments";
 import { useAxios } from "./useAxios";
 import {
   Listing,
-  Comment,
-  Submission,
+  RedditComment,
+  RedditSubmission,
   MoreChildren,
   ListedRawComment,
   ListedRawSubmission,
@@ -16,7 +16,7 @@ const fetchComments = async (
   axios: AxiosInstance,
   subreddit: string,
   postId: string
-): Promise<[Submission, Array<Comment | MoreChildren>]> => {
+): Promise<[RedditSubmission, Array<RedditComment | MoreChildren>]> => {
   const res = await axios.get<
     [Listing<ListedRawSubmission>, Listing<ListedRawComment>]
   >(`/r/${subreddit}/comments/${postId}/.json`);
