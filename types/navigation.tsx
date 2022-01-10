@@ -11,10 +11,6 @@ export type RootStackParamList = {
   Root: undefined;
   Modal: undefined;
   NotFound: undefined;
-  Auth: {
-    code: string;
-    state: string;
-  };
   Subreddit: {
     subreddit: string;
   };
@@ -29,7 +25,11 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
 
 export type DrawerParamList = {
   Root: undefined;
+  Auth: {
+    code: string;
+    state: string;
+  };
 };
 
-export type DrawerParamScreenProps<Screen extends keyof DrawerParamList> =
+export type RootDrawerScreenProps<Screen extends keyof DrawerParamList> =
   DrawerScreenProps<DrawerParamList, Screen>;

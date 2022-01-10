@@ -50,6 +50,7 @@ function DrawerNavigator() {
       drawerContent={DrawerScreen}
     >
       <Drawer.Screen name="Root" component={RootNavigator} />
+      <Drawer.Screen name="Auth" component={AuthScreen} />
     </Drawer.Navigator>
   );
 }
@@ -74,7 +75,6 @@ function RootNavigator() {
         component={CommentsScreen}
         options={{ presentation: "card" }}
       />
-      <Stack.Screen name="Auth" component={AuthScreen} />
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}
