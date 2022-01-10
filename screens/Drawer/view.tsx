@@ -8,15 +8,20 @@ import { SearchBar } from "../../components/SearchBar";
 
 interface RootDrawerScreenViewProps {
   formik: FormikContextType<{ query: string }>;
+  promptLogin: () => void;
 }
 
 export const RootDrawerScreenView: React.FC<RootDrawerScreenViewProps> = ({
   formik,
+  promptLogin,
 }) => {
   return (
     <SafeAreaView>
+      <Drawer.Section title="User">
+        <Button onPress={promptLogin}>Login</Button>
+      </Drawer.Section>
       <FormikProvider value={formik}>
-        <Drawer.Section title="Search" style={styles.section}>
+        <Drawer.Section title="Subreddits" style={styles.section}>
           <SearchBar
             placeholder="Search"
             onChangeText={formik.handleChange("query")}

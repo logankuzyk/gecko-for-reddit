@@ -1,9 +1,10 @@
 import React from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { DrawerNavigationHelpers } from "@react-navigation/drawer/lib/typescript/src/types";
 
 import { RootDrawerScreenView } from "./view";
-import { DrawerNavigationHelpers } from "@react-navigation/drawer/lib/typescript/src/types";
+import { useRedditContext } from "../../contexts/RedditContext";
 
 interface RootDrawerScreenControllerProps {
   navigation: DrawerNavigationHelpers;
@@ -12,6 +13,8 @@ interface RootDrawerScreenControllerProps {
 export const RootDrawerScreenController: React.FC<
   RootDrawerScreenControllerProps
 > = ({ navigation }) => {
+  const { promptLogin } = useRedditContext();
+
   const searchSchema = Yup.object().shape({
     query: Yup.string().required(),
   });
@@ -24,5 +27,5 @@ export const RootDrawerScreenController: React.FC<
     validationSchema: searchSchema,
   });
 
-  return <RootDrawerScreenView formik={formik} />;
+  return <RootDrawerScreenView formik={formik} promptLogin={promptLogin} />;
 };
