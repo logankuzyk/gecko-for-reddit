@@ -7,8 +7,9 @@ const SettingsScreenProvider: React.FC<RootStackScreenProps<"Subreddit">> = ({
   navigation,
   route,
 }) => {
-  const subreddit = "victoriabc";
-  // navigation.setOptions({ headerTitle: subreddit });
+  const subreddit = route.params.subreddit
+    ? route.params.subreddit
+    : "victoriabc";
 
   return (
     <SubredditScreenController navigation={navigation} subreddit={subreddit} />
