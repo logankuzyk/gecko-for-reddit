@@ -4,8 +4,8 @@ import { TextInput } from "react-native-paper";
 interface SearchBarProps {
   placeholder: string;
   onChangeText: (query: string) => void;
-  handleBlur: (e: any) => void;
-  value: string;
+  handleBlur?: (e: any) => void;
+  value?: string;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({

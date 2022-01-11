@@ -1,35 +1,30 @@
-import { FormikProvider, FormikContextType } from "formik";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Button, Drawer } from "react-native-paper";
 
 import { SearchBar } from "../../components/SearchBar";
-
+import { SearchResults } from "../../components/reddit/lists/SearchResults";
+import { RedditSubreddit } from "../../types/reddit";
 interface RootDrawerScreenViewProps {
-  formik: FormikContextType<{ query: string }>;
   promptLogin: () => void;
+  results: RedditSubreddit[] | undefined;
+  onChangeText: (input: string) => void;
 }
 
 export const RootDrawerScreenView: React.FC<RootDrawerScreenViewProps> = ({
-  formik,
   promptLogin,
+  results,
+  onChangeText,
 }) => {
   return (
     <>
       <Drawer.Section title="User">
         <Button onPress={promptLogin}>Login</Button>
       </Drawer.Section>
-      <FormikProvider value={formik}>
-        <Drawer.Section title="Subreddits" style={styles.section}>
-          <SearchBar
-            placeholder="Search"
-            onChangeText={formik.handleChange("query")}
-            value={formik.values.query}
-            handleBlur={formik.handleBlur("query")}
-          />
-          <Button onPress={formik.handleSubmit}>Submit</Button>
-        </Drawer.Section>
-      </FormikProvider>
+      <SearchBar placeholder="Search" onChangeText={onChangeText} />
+      <Drawer.Section title="Results">
+        <SearchResults entries={results} />
+      </Drawer.Section>
     </>
   );
 };

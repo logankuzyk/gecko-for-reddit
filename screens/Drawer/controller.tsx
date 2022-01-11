@@ -1,10 +1,9 @@
-import React from "react";
-import * as Yup from "yup";
-import { useFormik } from "formik";
+import React, { useState } from "react";
 import { DrawerNavigationHelpers } from "@react-navigation/drawer/lib/typescript/src/types";
 
 import { RootDrawerScreenView } from "./view";
 import { useRedditContext } from "../../contexts/RedditContext";
+import { useSearch } from "../../hooks/useSearch";
 
 interface RootDrawerScreenControllerProps {
   navigation: DrawerNavigationHelpers;
@@ -13,20 +12,24 @@ interface RootDrawerScreenControllerProps {
 export const RootDrawerScreenController: React.FC<
   RootDrawerScreenControllerProps
 > = ({ navigation }) => {
+  const [query, setQuery] = useState<string>("");
   const { promptLogin } = useRedditContext();
 
-  const searchSchema = Yup.object().shape({
-    query: Yup.string().required(),
-  });
+  const results = useSearch(query);
 
-  const formik = useFormik({
-    initialValues: { query: "" },
-    onSubmit: ({ query }, { resetForm }) => {
-      navigation.navigate("Subreddit", { subreddit: query });
-      resetForm();
-    },
-    validationSchema: searchSchema,
-  });
+  const onChangeText = (input: string) => {
+    if (input.length > 2) {
+      setQuery(input);
+    } else {
+      setQuery("");
+    }
+  };
 
-  return <RootDrawerScreenView formik={formik} promptLogin={promptLogin} />;
+  return (
+    <RootDrawerScreenView
+      onChangeText={onChangeText}
+      promptLogin={promptLogin}
+      results={results.data}
+    />
+  );
 };
