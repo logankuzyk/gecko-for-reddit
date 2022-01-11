@@ -22,9 +22,9 @@ export interface RedditContent {
   score: number;
   author: string;
   permalink: string;
-  url: string;
   spoiler: boolean;
   archived: boolean;
+  stickied: boolean;
 }
 
 export interface RawComment extends RedditContent {
@@ -50,6 +50,12 @@ export type CommentType = {
   more: RawMoreChildren;
 };
 
+export type PreviewEntry = {
+  url: string;
+  width: number;
+  height: number;
+};
+
 export interface RawSubmission extends RedditContent {
   title: string;
   domain: string;
@@ -57,6 +63,13 @@ export interface RawSubmission extends RedditContent {
   locked: boolean;
   selftext?: string;
   is_original_content: boolean;
+  clicked: boolean;
+  thumbnail: string;
+  is_video: boolean;
+  preview?: {
+    images: [source: PreviewEntry, resolutions: PreviewEntry[]];
+  };
+  url?: string;
 }
 
 export interface ListedRawSubmission {
@@ -79,6 +92,7 @@ export interface MoreChildren extends RawMoreChildren {
 
 export interface RedditSubmission extends RawSubmission {
   type: "submission";
+  linkType: RedditLinkType;
   date: Date;
 }
 
@@ -88,12 +102,4 @@ export interface RedditComment extends RawComment {
   replyTree: Array<RedditComment | MoreChildren>;
 }
 
-export interface ReplyableContent extends RedditContent {
-  //   approve(): () => void;
-  //   blockAuthor(): () => void;
-  //   ignoreReports(): () => void;
-  //   remove(options?: { spam?: boolean }): () => void;
-  //   reply(text: string): () => void;
-  //   report(options?: { reason?: string }): () => void;
-  //   unignoreReports(): () => void;
-}
+export type RedditLinkType = "self" | "video" | "image" | "external";
