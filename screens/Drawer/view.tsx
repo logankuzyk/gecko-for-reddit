@@ -26,7 +26,6 @@ export const RootDrawerScreenView: React.FC<RootDrawerScreenViewProps> = ({
             placeholder="Search"
             onChangeText={formik.handleChange("query")}
             value={formik.values.query}
-            error={!!formik.values.query && !!formik.touched.query}
             handleBlur={formik.handleBlur("query")}
           />
           <Button onPress={formik.handleSubmit}>Submit</Button>

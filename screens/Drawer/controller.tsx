@@ -21,8 +21,9 @@ export const RootDrawerScreenController: React.FC<
 
   const formik = useFormik({
     initialValues: { query: "" },
-    onSubmit: ({ query }) => {
+    onSubmit: ({ query }, { resetForm }) => {
       navigation.navigate("Subreddit", { subreddit: query });
+      resetForm();
     },
     validationSchema: searchSchema,
   });
