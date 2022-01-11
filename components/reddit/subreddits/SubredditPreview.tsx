@@ -1,6 +1,7 @@
 import React from "react";
-import { ListRenderItem, View } from "react-native";
+import { ListRenderItem, TouchableOpacity } from "react-native";
 import { Caption } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 
 import { RedditSubreddit } from "../../../types/reddit";
 import { Icon } from "../Icon";
@@ -12,8 +13,15 @@ interface SubredditPreviewProps {
 export const SubredditPreview: React.FC<SubredditPreviewProps> = ({
   subreddit,
 }) => {
+  const navigation = useNavigation();
+
+  const onPress = () => {
+    navigation.navigate("Subreddit", { subreddit: subreddit.display_name });
+  };
+
   return (
-    <View
+    <TouchableOpacity
+      onPress={onPress}
       style={{
         flexDirection: "row",
         paddingVertical: 4,
@@ -24,7 +32,7 @@ export const SubredditPreview: React.FC<SubredditPreviewProps> = ({
     >
       <Icon type="subreddit" uri={subreddit.community_icon} />
       <Caption>{subreddit.display_name}</Caption>
-    </View>
+    </TouchableOpacity>
   );
 };
 
