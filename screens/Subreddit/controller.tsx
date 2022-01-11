@@ -4,7 +4,7 @@ import { ActivityIndicator } from "react-native-paper";
 
 import { SubredditScreenView } from "./view";
 import { RootStackParamList } from "../../types/navigation";
-import { useSubreddit } from "../../hooks/useSubreddit";
+import { useSubmissions } from "../../hooks/useSubmissions";
 
 interface SubredditScreenControllerProps {
   navigation: StackNavigationProp<RootStackParamList, "Subreddit">;
@@ -14,7 +14,7 @@ interface SubredditScreenControllerProps {
 export const SubredditScreenController: React.FC<
   SubredditScreenControllerProps
 > = ({ navigation, subreddit }) => {
-  const submissions = useSubreddit(subreddit);
+  const submissions = useSubmissions(subreddit);
 
   if (submissions.isSuccess) {
     return <SubredditScreenView submissions={submissions.data} />;

@@ -9,7 +9,7 @@ import {
 } from "../types/reddit";
 import { determineSubmissionType } from "../util/determineSubmissionType";
 
-const fetchSubreddit = async (
+const fetchSubmissions = async (
   axios: AxiosInstance,
   subreddit: string
 ): Promise<RedditSubmission[]> => {
@@ -25,9 +25,9 @@ const fetchSubreddit = async (
   }));
 };
 
-export const useSubreddit = (subreddit: string) => {
+export const useSubmissions = (subreddit: string) => {
   const axios = useAxios();
   return useQuery(["subreddit", subreddit], () =>
-    fetchSubreddit(axios, subreddit)
+    fetchSubmissions(axios, subreddit)
   );
 };
