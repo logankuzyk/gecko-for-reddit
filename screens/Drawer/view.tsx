@@ -2,7 +2,6 @@ import { FormikProvider, FormikContextType } from "formik";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Button, Drawer } from "react-native-paper";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 import { SearchBar } from "../../components/SearchBar";
 
@@ -16,7 +15,7 @@ export const RootDrawerScreenView: React.FC<RootDrawerScreenViewProps> = ({
   promptLogin,
 }) => {
   return (
-    <SafeAreaView>
+    <>
       <Drawer.Section title="User">
         <Button onPress={promptLogin}>Login</Button>
       </Drawer.Section>
@@ -31,7 +30,7 @@ export const RootDrawerScreenView: React.FC<RootDrawerScreenViewProps> = ({
           <Button onPress={formik.handleSubmit}>Submit</Button>
         </Drawer.Section>
       </FormikProvider>
-    </SafeAreaView>
+    </>
   );
 };
 

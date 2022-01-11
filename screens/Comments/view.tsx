@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, View } from "react-native";
+import { FlatList } from "react-native";
 
 import { renderItem } from "../../components/reddit/lists/MixedContentList";
 import {
@@ -21,18 +21,11 @@ export const CommentsScreenView: React.FC<CommentsScreenViewProps> = ({
   const data = [submission, ...comments];
 
   return (
-    <View
-      style={{
-        flex: 1,
-        marginTop: 0,
-      }}
-    >
-      <FlatList
-        data={data}
-        keyExtractor={({ id }) => id}
-        renderItem={renderItem}
-        ItemSeparatorComponent={Seperator}
-      />
-    </View>
+    <FlatList
+      data={data}
+      keyExtractor={({ id }) => id}
+      renderItem={renderItem}
+      ItemSeparatorComponent={Seperator}
+    />
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { CommentsScreenController } from "./controller";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import { RootStackScreenProps } from "../../types/navigation";
 
@@ -10,11 +11,13 @@ const SettingsScreenProvider: React.FC<RootStackScreenProps<"Comments">> = ({
   const { subreddit, postId } = route.params;
 
   return (
-    <CommentsScreenController
-      navigation={navigation}
-      subreddit={subreddit}
-      postId={postId}
-    />
+    <SafeAreaView>
+      <CommentsScreenController
+        navigation={navigation}
+        subreddit={subreddit}
+        postId={postId}
+      />
+    </SafeAreaView>
   );
 };
 
