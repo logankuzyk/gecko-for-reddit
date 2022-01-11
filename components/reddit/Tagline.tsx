@@ -1,13 +1,16 @@
 import React from "react";
 
 import { View } from "react-native";
-import { Caption } from "react-native-paper";
+import { Caption, Subheading } from "react-native-paper";
 
 interface TaglineProps {
   content: Array<string>;
+  type: "submission" | "comment";
 }
 
-export const Tagline: React.FC<TaglineProps> = ({ content }) => {
+export const Tagline: React.FC<TaglineProps> = ({ content, type }) => {
+  const TextComponent = type === "comment" ? Caption : Subheading;
+
   return (
     <View
       style={{
@@ -16,9 +19,11 @@ export const Tagline: React.FC<TaglineProps> = ({ content }) => {
     >
       {content.map((item, index, array) => {
         if (index !== array.length - 1) {
-          return <Caption key={index.toString()}>{item} • </Caption>;
+          return (
+            <TextComponent key={index.toString()}>{item} • </TextComponent>
+          );
         } else {
-          return <Caption key={index.toString()}>{item}</Caption>;
+          return <TextComponent key={index.toString()}>{item}</TextComponent>;
         }
       })}
     </View>
