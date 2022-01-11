@@ -72,6 +72,32 @@ export interface RawSubmission extends RedditContent {
   url?: string;
 }
 
+export interface RawSubreddit {
+  title: string;
+  subscribers: number;
+  header_img: string | null;
+  primary_color: string;
+  accounts_active: number;
+  community_icon: string | null;
+  public_description: string;
+  created: number;
+  subreddit_type: "public" | "private";
+  spoilers_enabled: boolean;
+  emojis_enabled: boolean;
+  user_has_favorited: boolean;
+  submit_text: string;
+  all_original_content: boolean;
+  allow_images: boolean;
+  allow_videos: boolean;
+  user_is_banned: boolean;
+  user_is_muted: boolean;
+}
+
+export interface ListedRawSubreddit {
+  kind: "t5";
+  data: RawSubreddit;
+}
+
 export interface ListedRawSubmission {
   kind: "t3";
   data: RawSubmission;
@@ -103,3 +129,8 @@ export interface RedditComment extends RawComment {
 }
 
 export type RedditLinkType = "self" | "video" | "image" | "external";
+
+export interface RedditSubreddit extends RawSubreddit {
+  type: "subreddit";
+  date: Date;
+}
