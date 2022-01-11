@@ -7,6 +7,7 @@ import {
   RedditSubmission,
   ListedRawSubmission,
 } from "../types/reddit";
+import { determineSubmissionType } from "../util/determineSubmissionType";
 
 const fetchSubreddit = async (
   axios: AxiosInstance,
@@ -18,6 +19,7 @@ const fetchSubreddit = async (
   const submissions = res.data.data.children;
   return submissions.map((submission) => ({
     type: "submission",
+    linkType: determineSubmissionType(submission.data),
     date: new Date(submission.data.created * 1000),
     ...submission.data,
   }));

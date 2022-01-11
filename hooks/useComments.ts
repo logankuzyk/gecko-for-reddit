@@ -11,6 +11,7 @@ import {
   ListedRawComment,
   ListedRawSubmission,
 } from "../types/reddit";
+import { determineSubmissionType } from "../util/determineSubmissionType";
 
 const fetchComments = async (
   axios: AxiosInstance,
@@ -31,6 +32,7 @@ const fetchComments = async (
   return [
     {
       type: "submission",
+      linkType: determineSubmissionType(submission),
       date: new Date(submission.created * 1000),
       ...submission,
     },
