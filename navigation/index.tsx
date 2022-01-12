@@ -22,6 +22,7 @@ import { DrawerParamList, RootStackParamList } from "../types/navigation";
 import LinkingConfiguration from "./LinkingConfiguration";
 import SubredditScreen from "../screens/Subreddit";
 import CommentsScreen from "../screens/Comments";
+import ProfileScreen from "../screens/Profile";
 import { NavigationHeader } from "../components/NavigationHeader";
 import DrawerScreen from "../screens/Drawer";
 
@@ -70,16 +71,13 @@ function RootNavigator() {
       }}
     >
       <Stack.Screen name="Subreddit" component={SubredditScreen} />
-      <Stack.Screen
-        name="Comments"
-        component={CommentsScreen}
-        options={{ presentation: "card" }}
-      />
+      <Stack.Screen name="Comments" component={CommentsScreen} />
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}
         options={{ title: "Oops!" }}
       />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
     </Stack.Navigator>
   );
 }

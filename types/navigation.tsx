@@ -18,6 +18,9 @@ export type RootStackParamList = {
     subreddit: string;
     postId: string;
   };
+  Profile: {
+    username: string;
+  };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
