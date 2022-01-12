@@ -20,14 +20,19 @@ const fetchResults = async (
 
   const subreddits = res.data.data.children;
 
-  return subreddits.map((subreddit) => ({
-    ...subreddit.data,
-    type: "subreddit",
-    date: new Date(subreddit.data.created * 1000),
-    community_icon: subreddit.data.community_icon
-      ? subreddit.data.community_icon.split("?")[0]
-      : "",
-  }));
+  return subreddits
+    .filter(
+      (subreddit) =>
+        subreddit.data.display_name.toLowerCase() !== query.toLowerCase()
+    )
+    .map((subreddit) => ({
+      ...subreddit.data,
+      type: "subreddit",
+      date: new Date(subreddit.data.created * 1000),
+      community_icon: subreddit.data.community_icon
+        ? subreddit.data.community_icon.split("?")[0]
+        : "",
+    }));
 };
 
 export const useSearch = (query: string | undefined) => {
