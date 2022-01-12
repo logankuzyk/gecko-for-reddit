@@ -104,6 +104,75 @@ export interface ListedRawSubmission {
   data: RawSubmission;
 }
 
+export interface ListedRawUser {
+  kind: "t2";
+  data: RawUser;
+}
+
+export interface RawUser {
+  is_employee: boolean;
+  has_visited_new_profile: boolean;
+  is_friend: boolean;
+  pref_no_profanity: boolean;
+  has_external_account: boolean;
+  pref_geopopular: string;
+  pref_show_trending: boolean;
+  pref_show_presence: boolean;
+  snoovatar_img: string;
+  snoovatar_size?: any;
+  gold_expiration?: any;
+  has_gold_subscription: boolean;
+  is_sponsor: boolean;
+  num_friends: number;
+  can_edit_name: boolean;
+  is_blocked: boolean;
+  verified: boolean;
+  new_modmail_exists: boolean;
+  pref_autoplay: boolean;
+  coins: number;
+  has_paypal_subscription: boolean;
+  has_subscribed_to_premium: boolean;
+  id: string;
+  can_create_subreddit: boolean;
+  over_18: boolean;
+  is_gold: boolean;
+  is_mod: boolean;
+  awarder_karma: number;
+  suspension_expiration_utc?: any;
+  has_stripe_subscription: boolean;
+  is_suspended: boolean;
+  pref_video_autoplay: boolean;
+  in_chat: boolean;
+  has_android_subscription: boolean;
+  in_redesign_beta: boolean;
+  icon_img: string;
+  has_mod_mail: boolean;
+  pref_nightmode: boolean;
+  awardee_karma: number;
+  hide_from_robots: boolean;
+  password_set: boolean;
+  modhash: string;
+  link_karma: number;
+  force_password_reset: boolean;
+  total_karma: number;
+  inbox_count: number;
+  pref_top_karma_subreddits: boolean;
+  has_mail: boolean;
+  pref_show_snoovatar: boolean;
+  name: string;
+  pref_clickgadget: number;
+  created: number;
+  has_verified_email: boolean;
+  gold_creddits: number;
+  created_utc: number;
+  has_ios_subscription: boolean;
+  pref_show_twitter: boolean;
+  in_beta: boolean;
+  comment_karma: number;
+  accept_followers: boolean;
+  has_subscribed: boolean;
+}
+
 export interface RawMoreChildren {
   count: number;
   name: string;
@@ -127,6 +196,11 @@ export interface RedditComment extends RawComment {
   type: "comment";
   date: Date;
   replyTree: Array<RedditComment | MoreChildren>;
+}
+
+export interface RedditUser extends RawUser {
+  type: "user";
+  date: Date;
 }
 
 export type RedditLinkType = "self" | "video" | "image" | "external";
