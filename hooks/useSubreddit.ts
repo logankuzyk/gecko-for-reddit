@@ -6,9 +6,13 @@ import { RedditSubreddit, ListedRawSubreddit } from "../types/reddit";
 
 const fetchSubreddit = async (
   axios: AxiosInstance,
-  name: string
-): Promise<RedditSubreddit> => {
-  const res = await axios.get<ListedRawSubreddit>(`/r/${name}.json`);
+  name: string | undefined
+): Promise<RedditSubreddit | undefined> => {
+  if (!name) {
+    return;
+  }
+
+  const res = await axios.get<ListedRawSubreddit>(`/r/${name}/about.json`);
   const subreddit = res.data.data;
   return {
     type: "subreddit",
@@ -17,7 +21,9 @@ const fetchSubreddit = async (
   };
 };
 
-export const useSubreddit = (name: string) => {
+export const useSubreddit = (subreddit: string | undefined) => {
   const axios = useAxios();
-  return useQuery(["subreddit", name], () => fetchSubreddit(axios, name));
+  return useQuery(["subreddit", subreddit], () =>
+    fetchSubreddit(axios, subreddit)
+  );
 };
