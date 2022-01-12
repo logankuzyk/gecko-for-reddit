@@ -92,6 +92,8 @@ export interface RawSubreddit {
   user_is_banned: boolean;
   user_is_muted: boolean;
   display_name: string;
+  id: string;
+  subreddit: string;
 }
 
 export interface ListedRawSubreddit {
