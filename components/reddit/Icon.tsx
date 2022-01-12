@@ -15,7 +15,7 @@ export const Icon: React.FC<IconProps> = ({ type, uri }) => {
   const width = 42;
   const borderRadius = width / 2;
 
-  if (type === "subreddit" && uri) {
+  if (uri) {
     return <Image source={{ uri }} style={{ height, width, borderRadius }} />;
   } else if (type === "subreddit") {
     return (
