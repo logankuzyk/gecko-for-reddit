@@ -4,17 +4,20 @@ import { Button, Drawer } from "react-native-paper";
 
 import { SearchBar } from "../../components/SearchBar";
 import { SearchResults } from "../../components/reddit/lists/SearchResults";
-import { RedditSubreddit } from "../../types/reddit";
+import { SearchActions } from "../../components/reddit/lists/SearchActions";
+import { RedditSubreddit, RedditUser } from "../../types/reddit";
 interface RootDrawerScreenViewProps {
   promptLogin: () => void;
   results: RedditSubreddit[] | undefined;
   onChangeText: (input: string) => void;
+  matches: Array<RedditUser | RedditSubreddit>;
 }
 
 export const RootDrawerScreenView: React.FC<RootDrawerScreenViewProps> = ({
   promptLogin,
   results,
   onChangeText,
+  matches,
 }) => {
   return (
     <>
@@ -22,9 +25,20 @@ export const RootDrawerScreenView: React.FC<RootDrawerScreenViewProps> = ({
         <Button onPress={promptLogin}>Login</Button>
       </Drawer.Section>
       <SearchBar placeholder="Search" onChangeText={onChangeText} />
-      <Drawer.Section title="Results">
-        <SearchResults entries={results} />
-      </Drawer.Section>
+      {matches && matches.length > 0 ? (
+        <Drawer.Section title="Exact Matches">
+          <SearchActions entries={matches} />
+        </Drawer.Section>
+      ) : (
+        <></>
+      )}
+      {results && results.length > 0 ? (
+        <Drawer.Section title="Search Results">
+          <SearchResults entries={results} />
+        </Drawer.Section>
+      ) : (
+        <></>
+      )}
     </>
   );
 };
