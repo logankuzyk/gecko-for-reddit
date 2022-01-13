@@ -3,26 +3,21 @@ import { useQuery } from "react-query";
 
 import { useAxios } from "./useAxios";
 import { RedditUser, ListedRawUser } from "../types/reddit";
+import { parseUser } from "../util/parseUser";
 
 const fetchUser = async (
   axios: AxiosInstance,
-  username: string | undefined
+  username: string
 ): Promise<RedditUser | undefined> => {
-  if (!username) {
-    return;
-  }
-
   const res = await axios.get<ListedRawUser>(`/u/${username}/about.json`);
   const user = res.data.data;
-  return {
-    ...user,
-    icon_img: user.icon_img ? user.icon_img.split("?")[0] : "",
-    type: "user",
-    date: new Date(user.created * 1000),
-  };
+
+  return parseUser(user);
 };
 
 export const useUser = (username: string | undefined) => {
   const axios = useAxios();
-  return useQuery(["user", username], () => fetchUser(axios, username));
+  return useQuery(["user", username], () => fetchUser(axios, username!), {
+    enabled: !!username,
+  });
 };
