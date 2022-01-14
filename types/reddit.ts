@@ -211,3 +211,12 @@ export interface RedditSubreddit extends RawSubreddit {
   type: "subreddit";
   date: Date;
 }
+
+export interface SubredditList {
+  names: Array<string>;
+}
+
+export interface ThingToLoad {
+  type: "subreddit" | "user";
+  name: string;
+}

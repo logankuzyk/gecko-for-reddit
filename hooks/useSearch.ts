@@ -2,27 +2,24 @@ import { AxiosInstance } from "axios";
 import { useQuery } from "react-query";
 
 import { useAxios } from "./useAxios";
-import { RedditSubreddit, ListedRawSubreddit, Listing } from "../types/reddit";
-import { parseSubreddit } from "../util/parseSubreddit";
+import { SubredditList, ThingToLoad } from "../types/reddit";
 
 const fetchResults = async (
   axios: AxiosInstance,
   query: string
-): Promise<RedditSubreddit[]> => {
+): Promise<Array<ThingToLoad>> => {
   const params = new URLSearchParams();
-  params.append("q", query);
-  const res = await axios.get<Listing<ListedRawSubreddit>>(
-    `/subreddits/search?${params.toString()}`
+  params.append("query", query);
+  const res = await axios.get<SubredditList>(
+    `/api/search_reddit_names?${params.toString()}`
   );
 
-  const subreddits = res.data.data.children;
+  const subreddits = res.data.names;
 
-  return subreddits
-    .filter(
-      (subreddit) =>
-        subreddit.data.display_name.toLowerCase() !== query.toLowerCase()
-    )
-    .map(({ data: subreddit }) => parseSubreddit(subreddit));
+  return subreddits.map((name) => ({
+    type: "subreddit",
+    name,
+  }));
 };
 
 export const useSearch = (query: string | undefined) => {

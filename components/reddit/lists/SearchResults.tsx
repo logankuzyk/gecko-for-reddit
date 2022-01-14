@@ -1,19 +1,19 @@
 import React from "react";
 import { FlatList } from "react-native";
 
-import { RedditSubreddit } from "../../../types/reddit";
+import { ThingToLoad } from "../../../types/reddit";
 import { renderItem } from "../../SearchPreview";
 import { Seperator } from "./Seperator";
 
 interface SearchResultsProps {
-  entries: RedditSubreddit[] | undefined;
+  entries: Array<ThingToLoad> | undefined;
 }
 
 export const SearchResults: React.FC<SearchResultsProps> = ({ entries }) => {
   return (
     <FlatList
       data={entries}
-      keyExtractor={(item) => item.display_name}
+      keyExtractor={(item) => item.name}
       renderItem={renderItem}
       ItemSeparatorComponent={Seperator}
     />

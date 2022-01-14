@@ -4,7 +4,7 @@ import { DrawerNavigationHelpers } from "@react-navigation/drawer/lib/typescript
 import { RootDrawerScreenView } from "./view";
 import { useRedditContext } from "../../contexts/RedditContext";
 import { useSearch } from "../../hooks/useSearch";
-import { useExactMatches } from "../../hooks/useExactMatches";
+import { ThingToLoad } from "../../types/reddit";
 
 interface RootDrawerScreenControllerProps {
   navigation: DrawerNavigationHelpers;
@@ -16,8 +16,15 @@ export const RootDrawerScreenController: React.FC<
   const [query, setQuery] = useState<string>("");
   const { promptLogin } = useRedditContext();
 
-  const results = useSearch(query);
-  const matches = useExactMatches(query);
+  const subreddits = useSearch(query);
+  const users: Array<ThingToLoad> | undefined = query
+    ? [
+        {
+          type: "user",
+          name: query,
+        },
+      ]
+    : undefined;
 
   const onChangeText = (input: string) => {
     if (input.length > 2) {
@@ -31,8 +38,8 @@ export const RootDrawerScreenController: React.FC<
     <RootDrawerScreenView
       onChangeText={onChangeText}
       promptLogin={promptLogin}
-      results={results.data}
-      matches={matches}
+      subreddits={subreddits.data}
+      users={users}
     />
   );
 };
