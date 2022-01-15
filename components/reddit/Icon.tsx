@@ -11,8 +11,8 @@ interface IconProps {
 }
 
 export const Icon: React.FC<IconProps> = ({ type, uri }) => {
-  const height = 42;
-  const width = 42;
+  const height = 32;
+  const width = 32;
   const borderRadius = width / 2;
 
   if (uri) {
