@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList } from "react-native";
+import { FlatList, ScrollView } from "react-native";
 
 import { ThingToLoad } from "../../../types/reddit";
 import { renderItem } from "../../SearchPreview";
@@ -11,11 +11,14 @@ interface SearchResultsProps {
 
 export const SearchResults: React.FC<SearchResultsProps> = ({ entries }) => {
   return (
-    <FlatList
-      data={entries}
-      keyExtractor={(item) => item.name}
-      renderItem={renderItem}
-      ItemSeparatorComponent={Seperator}
-    />
+    <ScrollView horizontal={true} contentContainerStyle={{ width: "100%" }}>
+      <FlatList
+        nestedScrollEnabled={false}
+        data={entries}
+        keyExtractor={(item) => item.name}
+        renderItem={renderItem}
+        ItemSeparatorComponent={Seperator}
+      />
+    </ScrollView>
   );
 };

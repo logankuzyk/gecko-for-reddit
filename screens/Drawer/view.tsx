@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 import { Button, Drawer } from "react-native-paper";
 
 import { SearchBar } from "../../components/SearchBar";
@@ -19,7 +19,7 @@ export const RootDrawerScreenView: React.FC<RootDrawerScreenViewProps> = ({
   subreddits,
 }) => {
   return (
-    <>
+    <ScrollView>
       <Drawer.Section title="User">
         <Button onPress={promptLogin}>Login</Button>
       </Drawer.Section>
@@ -38,7 +38,7 @@ export const RootDrawerScreenView: React.FC<RootDrawerScreenViewProps> = ({
       ) : (
         <></>
       )}
-    </>
+    </ScrollView>
   );
 };
 
