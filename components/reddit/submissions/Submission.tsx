@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { RedditSubmission } from "../../../types/reddit";
 import { Tagline } from "../Tagline";
-import { ContentComponent } from "../ContentComponent";
+import { SubmissionContent } from "../SubmissionContent";
 
 interface SubmissionCardProps {
   submission: RedditSubmission;
@@ -25,7 +25,7 @@ export const SubmissionCard: React.FC<SubmissionCardProps> = ({
     return (
       <Card onPress={goToComments}>
         <Card.Content>
-          <ContentComponent submission={submission} />
+          <SubmissionContent submission={submission} />
         </Card.Content>
         <Card.Content>
           <Title>{title}</Title>
@@ -40,7 +40,7 @@ export const SubmissionCard: React.FC<SubmissionCardProps> = ({
           <Title>{title}</Title>
         </Card.Content>
         <Card.Content>
-          <ContentComponent submission={submission} />
+          <SubmissionContent submission={submission} />
           <Tagline content={[author, date.toDateString()]} type="submission" />
         </Card.Content>
       </Card>

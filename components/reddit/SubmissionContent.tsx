@@ -3,11 +3,11 @@ import { RedditSubmission } from "../../types/reddit";
 import { Image } from "./Image";
 import { SelfText } from "./SelfText";
 
-export interface ContentComponentProps {
+export interface SubmissionContent {
   submission: RedditSubmission;
 }
 
-export const ContentComponent: React.FC<ContentComponentProps> = ({
+export const SubmissionContent: React.FC<SubmissionContent> = ({
   submission,
 }) => {
   const { linkType } = submission;
