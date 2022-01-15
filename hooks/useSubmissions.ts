@@ -2,32 +2,34 @@ import { AxiosInstance } from "axios";
 import { useQuery } from "react-query";
 
 import { useAxios } from "./useAxios";
+import { useRedditContext } from "../contexts/RedditContext";
 import {
   Listing,
   RedditSubmission,
   ListedRawSubmission,
 } from "../types/reddit";
-import { determineSubmissionType } from "../util/determineSubmissionType";
+import { parseSubmission } from "../util/parseSubmission";
 
 const fetchSubmissions = async (
   axios: AxiosInstance,
-  subreddit: string
+  subreddit: string | undefined,
+  isLoggedIn: boolean
 ): Promise<RedditSubmission[]> => {
-  const res = await axios.get<Listing<ListedRawSubmission>>(
-    `/r/${subreddit}.json`
-  );
+  const endpoint = subreddit
+    ? `/r/${subreddit}.json`
+    : isLoggedIn
+    ? "/.json"
+    : "/r/all.json";
+
+  const res = await axios.get<Listing<ListedRawSubmission>>(endpoint);
   const submissions = res.data.data.children;
-  return submissions.map((submission) => ({
-    type: "submission",
-    linkType: determineSubmissionType(submission.data),
-    date: new Date(submission.data.created * 1000),
-    ...submission.data,
-  }));
+  return submissions.map((item) => parseSubmission(item.data));
 };
 
-export const useSubmissions = (subreddit: string) => {
+export const useSubmissions = (subreddit: string | undefined) => {
   const axios = useAxios();
-  return useQuery(["subreddit", subreddit], () =>
-    fetchSubmissions(axios, subreddit)
+  const { isLoggedIn } = useRedditContext();
+  return useQuery(["subreddit", subreddit, isLoggedIn], () =>
+    fetchSubmissions(axios, subreddit, isLoggedIn)
   );
 };
