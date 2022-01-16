@@ -9,9 +9,5 @@ interface RootCommentProps {
 }
 
 export const RootComment: React.FC<RootCommentProps> = ({ data }) => {
-  return (
-    <Card>
-      <Comment data={data} />
-    </Card>
-  );
+  return <Comment data={data} />;
 };
