@@ -1,5 +1,6 @@
 import React from "react";
-import { TextInput } from "react-native-paper";
+import { TextInput, View } from "react-native";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 interface SearchBarProps {
   placeholder: string;
@@ -15,14 +16,25 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   value,
 }) => {
   return (
-    <TextInput
-      placeholder={placeholder}
-      onChangeText={onChangeText}
-      onBlur={handleBlur}
-      value={value}
-      mode="outlined"
-      autoCapitalize="none"
-      outlineColor="rgba(0,0,0,0)"
-    />
+    <View
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+    >
+      <TextInput
+        placeholder={placeholder}
+        onChangeText={onChangeText}
+        onBlur={handleBlur}
+        value={value}
+        autoCapitalize="none"
+        maxLength={20}
+        clearButtonMode="always"
+        style={{
+          height: 48,
+        }}
+      />
+    </View>
   );
 };
