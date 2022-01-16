@@ -1,9 +1,15 @@
 import React from "react";
 import { View } from "react-native";
 
-interface SeperatorProps {
-  height?: number;
-}
-export const Seperator: React.FC<SeperatorProps> = ({ height = 4 }) => {
-  return <View style={{ height }} />;
+import { colors } from "../../../styles/colors";
+
+export const Seperator: React.FC = () => {
+  return (
+    <View
+      style={{
+        height: 1,
+        backgroundColor: colors.grey["200"],
+      }}
+    />
+  );
 };

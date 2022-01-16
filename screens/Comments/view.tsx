@@ -1,24 +1,15 @@
 import React from "react";
-import { FlatList, View } from "react-native";
+import { FlatList } from "react-native";
 
+import { styleSheet } from "../../styles/styleSheet";
 import { renderItem } from "../../components/reddit/lists/MixedContentList";
 import {
   RedditSubmission,
   RedditComment,
   MoreChildren,
 } from "../../types/reddit";
-import { colors } from "../../styles/colors";
+import { Seperator } from "../../components/reddit/lists/Seperator";
 
-const Line: React.FC = () => {
-  return (
-    <View
-      style={{
-        height: 1,
-        backgroundColor: colors.grey["100"],
-      }}
-    />
-  );
-};
 interface CommentsScreenViewProps {
   submission: RedditSubmission;
   comments: Array<RedditComment | MoreChildren>;
@@ -35,8 +26,8 @@ export const CommentsScreenView: React.FC<CommentsScreenViewProps> = ({
       data={data}
       keyExtractor={({ id }) => id}
       renderItem={renderItem}
-      ItemSeparatorComponent={Line}
-      contentContainerStyle={{ backgroundColor: "#FFFFFF" }}
+      ItemSeparatorComponent={Seperator}
+      contentContainerStyle={styleSheet.flatList}
     />
   );
 };
