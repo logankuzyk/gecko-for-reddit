@@ -16,7 +16,6 @@ export const TouchableListEntry: React.FC<TouchableListEntryProps> = ({
       style={{
         flexDirection: "row",
         paddingVertical: 4,
-        paddingHorizontal: 8,
         alignItems: "center",
         justifyContent: "space-between",
       }}
