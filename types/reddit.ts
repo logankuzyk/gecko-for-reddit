@@ -191,25 +191,25 @@ export interface MoreChildren extends RawMoreChildren {
 export interface RedditSubmission extends RawSubmission {
   type: "submission";
   linkType: RedditLinkType;
-  date: Date;
+  date: string;
 }
 
 export interface RedditComment extends RawComment {
   type: "comment";
-  date: Date;
+  date: string;
   replyTree: Array<RedditComment | MoreChildren>;
 }
 
 export interface RedditUser extends RawUser {
   type: "user";
-  date: Date;
+  date: string;
 }
 
 export type RedditLinkType = "self" | "video" | "image" | "external";
 
 export interface RedditSubreddit extends RawSubreddit {
   type: "subreddit";
-  date: Date;
+  date: string;
 }
 
 export interface SubredditList {

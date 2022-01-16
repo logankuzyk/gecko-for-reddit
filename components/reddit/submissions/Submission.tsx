@@ -38,7 +38,7 @@ export const SubmissionCard: React.FC<SubmissionCardProps> = ({
         />
         <Title>{title}</Title>
         <View style={{ marginTop: 6 }}>
-          <Tagline content={[author, date.toDateString()]} type="submission" />
+          <Tagline content={[author, date]} type="submission" />
         </View>
       </TouchableOpacity>
     );
@@ -58,7 +58,7 @@ export const SubmissionCard: React.FC<SubmissionCardProps> = ({
           submission={submission}
         />
         <View>
-          <Tagline content={[author, date.toDateString()]} type="submission" />
+          <Tagline content={[author, date]} type="submission" />
         </View>
       </TouchableOpacity>
     );

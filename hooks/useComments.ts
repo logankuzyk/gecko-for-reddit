@@ -2,6 +2,7 @@ import { AxiosInstance } from "axios";
 import { useQuery } from "react-query";
 
 import { parseComments } from "../util/parseComments";
+import { parseSubmission } from "../util/parseSubmission";
 import { useAxios } from "./useAxios";
 import {
   Listing,
@@ -29,15 +30,7 @@ const fetchComments = async (
 
   const comments = parseComments(rawComments);
 
-  return [
-    {
-      type: "submission",
-      linkType: determineSubmissionType(submission),
-      date: new Date(submission.created * 1000),
-      ...submission,
-    },
-    comments,
-  ];
+  return [parseSubmission(submission), comments];
 };
 
 export const useComments = (subreddit: string, postId: string) => {

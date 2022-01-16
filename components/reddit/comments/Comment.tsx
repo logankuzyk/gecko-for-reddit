@@ -27,7 +27,7 @@ export const Comment: React.FC<CommentProps> = ({ data, depth = 0 }) => {
       <View style={{ paddingHorizontal: 18 }}>
         <View style={{ marginBottom: 8 }}>
           <View style={{ marginTop: 8 }}>
-            <Tagline content={[author, date.toDateString()]} type="comment" />
+            <Tagline content={[author, date]} type="comment" />
           </View>
           <View style={{ marginTop: 4 }}>
             <Paragraph>{body}</Paragraph>

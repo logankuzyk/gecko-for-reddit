@@ -8,7 +8,7 @@ interface TaglineProps {
   type: "submission" | "comment";
 }
 
-export const Tagline: React.FC<TaglineProps> = ({ content, type }) => {
+export const Tagline: React.FC<TaglineProps> = ({ content }) => {
   return (
     <View
       style={{
