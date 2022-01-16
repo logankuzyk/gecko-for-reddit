@@ -1,6 +1,5 @@
 import React from "react";
 import { View, ListRenderItem } from "react-native";
-import { Card } from "react-native-paper";
 
 import { Paragraph } from "../../typography/Paragraph";
 import { ChildIndent } from "./ChildIndent";
@@ -25,24 +24,24 @@ export const Comment: React.FC<CommentProps> = ({ data, depth = 0 }) => {
       );
 
     return (
-      <>
-        <View style={{ paddingVertical: 6 }}>
-          <Card.Content>
+      <View style={{ paddingHorizontal: 12 }}>
+        <View style={{ marginBottom: 12 }}>
+          <View style={{ marginTop: 8 }}>
             <Tagline content={[author, date.toDateString()]} type="comment" />
-          </Card.Content>
-          <Card.Content>
+          </View>
+          <View style={{ marginTop: 4 }}>
             <Paragraph>{body}</Paragraph>
-          </Card.Content>
+          </View>
         </View>
         {child}
-      </>
+      </View>
     );
   } else {
     return (
       //TODO: allow user to expand comments stored in more children object
-      <Card.Content>
+      <View style={{ padding: 12 }}>
         <Paragraph>Show More</Paragraph>
-      </Card.Content>
+      </View>
     );
   }
 };

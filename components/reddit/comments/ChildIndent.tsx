@@ -13,7 +13,7 @@ export const ChildIndent: React.FC<ChildIndentProps> = ({
   depth,
   children,
 }) => {
-  const colorId = (900 - depth * 100).toString();
+  const colorId = (depth * 100 + 100).toString();
 
   const color = isColorWeight(colorId) ? colors.green[colorId] : "#FFFFFF";
 
@@ -21,7 +21,7 @@ export const ChildIndent: React.FC<ChildIndentProps> = ({
     <View
       style={{
         borderLeftWidth: 2,
-        marginLeft: 10,
+        marginRight: 12,
         borderColor: color,
       }}
     >
