@@ -9,6 +9,7 @@ export const Line: React.FC = () => {
       style={{
         height: 1,
         backgroundColor: colors.grey["300"],
+        marginVertical: 12,
       }}
     />
   );
