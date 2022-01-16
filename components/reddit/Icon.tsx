@@ -6,9 +6,30 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { colors } from "../../styles/colors";
 
 interface IconProps {
-  type: "user" | "subreddit";
-  uri: string | null | undefined;
+  type: "user" | "subreddit" | "frontpage" | "all";
+  uri?: string | null | undefined;
 }
+
+const Circle: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const height = 32;
+  const width = 32;
+  const borderRadius = width / 2;
+
+  return (
+    <View
+      style={{
+        height,
+        width,
+        borderRadius,
+        backgroundColor: colors.grey["300"],
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      {children}
+    </View>
+  );
+};
 
 export const Icon: React.FC<IconProps> = ({ type, uri }) => {
   const height = 32;
@@ -19,21 +40,28 @@ export const Icon: React.FC<IconProps> = ({ type, uri }) => {
     return <Image source={{ uri }} style={{ height, width, borderRadius }} />;
   } else if (type === "subreddit") {
     return (
-      <View
-        style={{
-          height,
-          width,
-          borderRadius,
-          backgroundColor: colors.grey["300"],
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <Circle>
         <Subheading>/r/</Subheading>
-      </View>
+      </Circle>
     );
   } else if (type === "user") {
-    return <FontAwesome5 name="user" />;
+    return (
+      <Circle>
+        <FontAwesome5 solid name="user" />
+      </Circle>
+    );
+  } else if (type === "all") {
+    return (
+      <Circle>
+        <FontAwesome5 name="poll" />
+      </Circle>
+    );
+  } else if (type === "frontpage") {
+    return (
+      <Circle>
+        <FontAwesome5 name="house-user" />
+      </Circle>
+    );
   } else {
     return <></>;
   }
