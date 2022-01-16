@@ -1,5 +1,5 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
+import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { Provider as PaperProvider } from "react-native-paper";
@@ -23,8 +23,8 @@ export default function App() {
         <QueryClientProvider client={queryClient}>
           <PaperProvider theme={theme}>
             <RedditProvider>
-              <Navigation colorScheme={colorScheme} />
               <StatusBar />
+              <Navigation colorScheme={colorScheme} />
             </RedditProvider>
           </PaperProvider>
         </QueryClientProvider>
