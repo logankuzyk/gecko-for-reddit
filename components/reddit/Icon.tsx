@@ -6,7 +6,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { colors } from "../../styles/colors";
 
 interface IconProps {
-  type: "user" | "subreddit" | "frontpage" | "all";
+  type: "user" | "subreddit" | "frontpage" | "all" | "popular";
   uri?: string | null | undefined;
 }
 
@@ -36,6 +36,13 @@ export const Icon: React.FC<IconProps> = ({ type, uri }) => {
   const width = 32;
   const borderRadius = width / 2;
 
+  const icons = {
+    user: "user",
+    all: "poll",
+    frontpage: "house-user",
+    popular: "rocket",
+  };
+
   if (uri) {
     return <Image source={{ uri }} style={{ height, width, borderRadius }} />;
   } else if (type === "subreddit") {
@@ -50,16 +57,10 @@ export const Icon: React.FC<IconProps> = ({ type, uri }) => {
         <FontAwesome5 solid name="user" />
       </Circle>
     );
-  } else if (type === "all") {
+  } else if (icons[type]) {
     return (
       <Circle>
-        <FontAwesome5 name="poll" />
-      </Circle>
-    );
-  } else if (type === "frontpage") {
-    return (
-      <Circle>
-        <FontAwesome5 name="house-user" />
+        <FontAwesome5 solid name={icons[type]} />
       </Circle>
     );
   } else {
