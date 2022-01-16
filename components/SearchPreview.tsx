@@ -1,9 +1,9 @@
 import React from "react";
 import { ListRenderItem } from "react-native";
-import { Caption } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { ActivityIndicator } from "react-native-paper";
 
+import { Caption } from "./typography/Caption";
 import { ThingToLoad } from "../types/reddit";
 import { Icon } from "./reddit/Icon";
 import { TouchableListEntry } from "./TouchableListEntry";

@@ -1,9 +1,8 @@
 import React from "react";
 import { View } from "react-native";
-import { Caption } from "react-native-paper";
-
 import { useNavigation } from "@react-navigation/native";
 
+import { Caption } from "./typography/Caption";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 import { Icon } from "./reddit/Icon";
 import { TouchableListEntry } from "./TouchableListEntry";

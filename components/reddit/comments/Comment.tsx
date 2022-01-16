@@ -1,7 +1,8 @@
 import React from "react";
 import { View, ListRenderItem } from "react-native";
-import { Card, Paragraph } from "react-native-paper";
+import { Card } from "react-native-paper";
 
+import { Paragraph } from "../../typography/Paragraph";
 import { ChildIndent } from "./ChildIndent";
 import { RedditComment, MoreChildren } from "../../../types/reddit";
 import { Tagline } from "../Tagline";

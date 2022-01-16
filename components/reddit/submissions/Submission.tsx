@@ -1,8 +1,9 @@
 import React from "react";
 import { ListRenderItem } from "react-native";
-import { Card, Title } from "react-native-paper";
+import { Card } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
+import { Title } from "../../typography/Title";
 import { RedditSubmission } from "../../../types/reddit";
 import { Tagline } from "../Tagline";
 import { SubmissionContent } from "../SubmissionContent";

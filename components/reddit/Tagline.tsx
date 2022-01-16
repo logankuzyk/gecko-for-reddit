@@ -1,7 +1,8 @@
 import React from "react";
-
 import { View } from "react-native";
-import { Caption, Subheading } from "react-native-paper";
+import { Subheading } from "react-native-paper";
+
+import { Caption } from "../typography/Caption";
 
 interface TaglineProps {
   content: Array<string>;

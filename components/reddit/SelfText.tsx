@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
-import { Paragraph } from "react-native-paper";
 
+import { Paragraph } from "../typography/Paragraph";
 import { RedditSubmission } from "../../types/reddit";
 import { colors } from "../../styles/colors";
 
