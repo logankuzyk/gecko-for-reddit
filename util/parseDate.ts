@@ -10,11 +10,14 @@ export const parseDate = (date: number, absolute?: boolean) => {
     return new Date(epoch).toDateString();
   }
   if (delta >= msPerDay) {
-    return `${Math.floor(delta / msPerDay)} days ago`;
+    const num = Math.floor(delta / msPerDay);
+    return num !== 1 ? `${num} days ago` : `${num} day ago`;
   } else if (delta >= msPerHour) {
-    return `${Math.floor(delta / msPerHour)} hours ago`;
+    const num = Math.floor(delta / msPerHour);
+    return num !== 1 ? `${num} hours ago` : `${num} hour ago`;
   } else if (delta >= msPerMinute) {
-    return `${Math.floor(delta / msPerMinute)} minutes ago`;
+    const num = Math.floor(delta / msPerMinute);
+    return num !== 1 ? `${num} minutes ago` : `${num} minute ago`;
   } else {
     return "now";
   }
