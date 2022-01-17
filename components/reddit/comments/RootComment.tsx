@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "react-native-paper";
+import { View } from "react-native";
 
 import { RedditComment, MoreChildren } from "../../../types/reddit";
 import { Comment } from "./Comment";
@@ -9,5 +9,9 @@ interface RootCommentProps {
 }
 
 export const RootComment: React.FC<RootCommentProps> = ({ data }) => {
-  return <Comment data={data} />;
+  return (
+    <View style={{ paddingRight: 18 }}>
+      <Comment data={data} />
+    </View>
+  );
 };

@@ -24,7 +24,7 @@ export const Comment: React.FC<CommentProps> = ({ data, depth = 0 }) => {
       );
 
     return (
-      <View style={{ paddingHorizontal: 18 }}>
+      <View style={{ paddingLeft: 18 }}>
         <View style={{ marginBottom: 8 }}>
           <View style={{ marginTop: 8 }}>
             <Tagline content={[author, date]} type="comment" />
@@ -39,7 +39,7 @@ export const Comment: React.FC<CommentProps> = ({ data, depth = 0 }) => {
   } else {
     return (
       //TODO: allow user to expand comments stored in more children object
-      <View style={{ paddingHorizontal: 18, paddingVertical: 8 }}>
+      <View style={{ paddingLeft: 18, paddingVertical: 8 }}>
         <Paragraph>Show More</Paragraph>
       </View>
     );
