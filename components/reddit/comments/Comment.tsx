@@ -14,17 +14,9 @@ interface CommentProps {
 export const Comment: React.FC<CommentProps> = ({ data, depth = 0 }) => {
   if (data.type === "comment") {
     const { author, date, body } = data;
-    const child =
-      data.replyTree.length > 0 ? (
-        <ChildIndent depth={data.depth + 1}>
-          <Comment data={data.replyTree[0]} />
-        </ChildIndent>
-      ) : (
-        <></>
-      );
 
     return (
-      <View style={{ paddingLeft: 18 }}>
+      <View key={data.id} style={{ paddingLeft: 18 }}>
         <View style={{ marginBottom: 8 }}>
           <View style={{ marginTop: 8 }}>
             <Tagline content={[author, date]} type="comment" />
@@ -33,7 +25,11 @@ export const Comment: React.FC<CommentProps> = ({ data, depth = 0 }) => {
             <Paragraph>{body}</Paragraph>
           </View>
         </View>
-        {child}
+        {data.replyTree.map((comment) => (
+          <ChildIndent depth={comment.depth + 1}>
+            <Comment data={comment} />
+          </ChildIndent>
+        ))}
       </View>
     );
   } else {
