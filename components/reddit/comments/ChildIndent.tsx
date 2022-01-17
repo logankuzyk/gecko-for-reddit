@@ -21,7 +21,6 @@ export const ChildIndent: React.FC<ChildIndentProps> = ({
     <View
       style={{
         borderLeftWidth: 2,
-        marginRight: 12,
         borderColor: color,
       }}
     >
