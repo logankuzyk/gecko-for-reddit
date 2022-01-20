@@ -9,6 +9,14 @@ export interface Listing<T> {
 }
 
 export interface RedditContent {
+  all_awardings: Array<{
+    count: number;
+    resized_static_icons: Array<{
+      url: string;
+      width: number;
+      height: number;
+    }>;
+  }>;
   created_utc: number;
   created: number;
   id: string;
@@ -193,6 +201,7 @@ export interface RedditSubmission extends RawSubmission {
   linkType: RedditLinkType;
   date: string;
   scoreString: string;
+  awards: Array<{ src: string; count: number }>;
 }
 
 export interface RedditComment extends RawComment {
@@ -200,6 +209,7 @@ export interface RedditComment extends RawComment {
   date: string;
   replyTree: Array<RedditComment | MoreChildren>;
   scoreString: string;
+  awards: Array<{ src: string; count: number }>;
 }
 
 export interface RedditUser extends RawUser {

@@ -1,4 +1,5 @@
 import { RedditComment, RawComment } from "../types/reddit";
+import { parseAwards } from "./parseAwards";
 import { parseComments } from "./parseComments";
 import { parseDate } from "./parseDate";
 import { parseScore } from "./parseScore";
@@ -14,5 +15,6 @@ export const parseComment = (comment: RawComment): RedditComment => {
     date: parseDate(comment.created),
     scoreString: parseScore(comment.score),
     replyTree: replies,
+    awards: parseAwards(comment),
   };
 };

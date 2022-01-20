@@ -1,12 +1,12 @@
 import React from "react";
-import { ListRenderItem, View } from "react-native";
+import { ListRenderItem, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { Title } from "../../typography/Title";
 import { RedditSubmission } from "../../../types/reddit";
 import { Tagline } from "../Tagline";
 import { SubmissionContent } from "../SubmissionContent";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { AllAwards } from "../AllAwards";
 
 interface SubmissionCardProps {
   submission: RedditSubmission;
@@ -39,6 +39,7 @@ export const SubmissionCard: React.FC<SubmissionCardProps> = ({
           submission={submission}
         />
         <Title>{title}</Title>
+        <AllAwards {...submission} />
         <View style={{ marginTop: 6 }}>
           <Tagline content={tagline} type="submission" />
         </View>
