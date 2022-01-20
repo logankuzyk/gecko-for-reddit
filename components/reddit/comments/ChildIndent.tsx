@@ -1,7 +1,6 @@
 import React from "react";
 import { View } from "react-native";
 
-import { isColorWeight } from "../../../util/isColorWeight";
 import { colors } from "../../../styles/colors";
 
 interface ChildIndentProps {
