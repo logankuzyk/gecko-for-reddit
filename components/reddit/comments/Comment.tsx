@@ -18,13 +18,13 @@ export const Comment: React.FC<CommentProps> = ({
   submissionFullname,
 }) => {
   if (data.type === "comment") {
-    const { author, date, body } = data;
+    const { author, date, body, scoreString } = data;
 
     return (
       <View key={data.id} style={{ paddingLeft: 18 }}>
         <View style={{ marginBottom: 8 }}>
           <View style={{ marginTop: 8 }}>
-            <Tagline content={[author, date]} type="comment" />
+            <Tagline content={[author, scoreString, date]} type="comment" />
           </View>
           <View style={{ marginTop: 4 }}>
             <Paragraph>{body}</Paragraph>

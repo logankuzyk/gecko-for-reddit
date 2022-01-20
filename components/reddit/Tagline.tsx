@@ -13,6 +13,7 @@ export const Tagline: React.FC<TaglineProps> = ({ content }) => {
     <View
       style={{
         flexDirection: "row",
+        flexWrap: "wrap",
       }}
     >
       {content.map((item, index, array) => {

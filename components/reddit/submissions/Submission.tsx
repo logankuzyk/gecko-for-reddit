@@ -16,7 +16,9 @@ export const SubmissionCard: React.FC<SubmissionCardProps> = ({
   submission,
 }) => {
   const navigation = useNavigation();
-  const { title, author, id, subreddit, date, linkType } = submission;
+  const { title, author, id, subreddit, date, linkType, scoreString } =
+    submission;
+  const tagline = [author, scoreString, date];
 
   const goToComments = () => {
     navigation.navigate("Comments", { postId: id, subreddit });
@@ -38,7 +40,7 @@ export const SubmissionCard: React.FC<SubmissionCardProps> = ({
         />
         <Title>{title}</Title>
         <View style={{ marginTop: 6 }}>
-          <Tagline content={[author, date]} type="submission" />
+          <Tagline content={tagline} type="submission" />
         </View>
       </TouchableOpacity>
     );
@@ -58,7 +60,7 @@ export const SubmissionCard: React.FC<SubmissionCardProps> = ({
           submission={submission}
         />
         <View>
-          <Tagline content={[author, date]} type="submission" />
+          <Tagline content={tagline} type="submission" />
         </View>
       </TouchableOpacity>
     );
