@@ -1,6 +1,7 @@
 import { RawSubmission, RedditSubmission } from "../types/reddit";
 import { determineSubmissionType } from "./determineSubmissionType";
 import { parseDate } from "./parseDate";
+import { parseScore } from "./parseScore";
 
 export const parseSubmission = (
   submission: RawSubmission
@@ -9,6 +10,7 @@ export const parseSubmission = (
     ...submission,
     type: "submission",
     linkType: determineSubmissionType(submission),
+    scoreString: parseScore(submission.score),
     date: parseDate(submission.created),
   };
 };

@@ -192,12 +192,14 @@ export interface RedditSubmission extends RawSubmission {
   type: "submission";
   linkType: RedditLinkType;
   date: string;
+  scoreString: string;
 }
 
 export interface RedditComment extends RawComment {
   type: "comment";
   date: string;
   replyTree: Array<RedditComment | MoreChildren>;
+  scoreString: string;
 }
 
 export interface RedditUser extends RawUser {
