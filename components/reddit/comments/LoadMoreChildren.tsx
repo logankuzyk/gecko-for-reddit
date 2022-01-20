@@ -22,6 +22,7 @@ export const LoadMoreChildren: React.FC<LoadMoreChildrenProps> = ({
     submissionFullname
   );
 
+  const numberToLoad = moreChildren.children.length;
   const onPress = () => {
     setShouldLoad(true);
   };
@@ -32,7 +33,7 @@ export const LoadMoreChildren: React.FC<LoadMoreChildrenProps> = ({
         style={{ paddingLeft: 18, paddingVertical: 8 }}
         onPress={onPress}
       >
-        <Paragraph>Show More</Paragraph>
+        <Paragraph>Show More ({numberToLoad})</Paragraph>
       </TouchableOpacity>
     );
   } else if (Array.isArray(comments.data)) {
