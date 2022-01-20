@@ -220,3 +220,12 @@ export interface ThingToLoad {
   type: "subreddit" | "user";
   name: string;
 }
+
+export interface MoreChildrenResponse {
+  json: {
+    data: {
+      things: Array<ListedRawComment>;
+    };
+  };
+  errors: Array<string>;
+}

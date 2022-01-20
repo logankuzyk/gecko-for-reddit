@@ -1,17 +1,22 @@
 import React from "react";
-import { View, ListRenderItem } from "react-native";
+import { View } from "react-native";
 
 import { Paragraph } from "../../typography/Paragraph";
 import { ChildIndent } from "./ChildIndent";
 import { RedditComment, MoreChildren } from "../../../types/reddit";
 import { Tagline } from "../Tagline";
+import { LoadMoreChildren } from "./LoadMoreChildren";
 
 interface CommentProps {
   data: RedditComment | MoreChildren;
+  submissionFullname: string;
   depth?: number;
 }
 
-export const Comment: React.FC<CommentProps> = ({ data, depth = 0 }) => {
+export const Comment: React.FC<CommentProps> = ({
+  data,
+  submissionFullname,
+}) => {
   if (data.type === "comment") {
     const { author, date, body } = data;
 
@@ -27,21 +32,17 @@ export const Comment: React.FC<CommentProps> = ({ data, depth = 0 }) => {
         </View>
         {data.replyTree.map((comment) => (
           <ChildIndent depth={comment.depth + 1}>
-            <Comment data={comment} />
+            <Comment data={comment} submissionFullname={submissionFullname} />
           </ChildIndent>
         ))}
       </View>
     );
   } else {
     return (
-      //TODO: allow user to expand comments stored in more children object
-      <View style={{ paddingLeft: 18, paddingVertical: 8 }}>
-        <Paragraph>Show More</Paragraph>
-      </View>
+      <LoadMoreChildren
+        submissionFullname={submissionFullname}
+        moreChildren={data}
+      />
     );
   }
-};
-
-export const renderItem: ListRenderItem<RedditComment> = ({ item }) => {
-  return <Comment data={item} />;
 };

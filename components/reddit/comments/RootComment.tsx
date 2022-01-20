@@ -9,9 +9,11 @@ interface RootCommentProps {
 }
 
 export const RootComment: React.FC<RootCommentProps> = ({ data }) => {
+  const submissionFullname = data.parent_id;
+
   return (
     <View style={{ paddingRight: 18 }}>
-      <Comment data={data} />
+      <Comment data={data} submissionFullname={submissionFullname} />
     </View>
   );
 };
