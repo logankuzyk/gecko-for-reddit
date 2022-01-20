@@ -13,9 +13,21 @@ export const ChildIndent: React.FC<ChildIndentProps> = ({
   depth,
   children,
 }) => {
-  const colorId = (depth * 100 + 100).toString();
+  const replyColors = [
+    colors.purple["500"],
+    colors.indigo["500"],
+    colors.green["500"],
+    colors.amber["500"],
+    colors.deepOrange["500"],
+    colors.red["500"],
+  ];
 
-  const color = isColorWeight(colorId) ? colors.green[colorId] : "#FFFFFF";
+  const trueDepth = depth - 2;
+
+  const color =
+    trueDepth < replyColors.length
+      ? replyColors[trueDepth]
+      : replyColors[trueDepth % replyColors.length];
 
   return (
     <View
