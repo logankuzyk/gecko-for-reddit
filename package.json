@@ -1,6 +1,6 @@
 {
-  "name": "cirrus-for-reddit",
-  "version": "1.0.0",
+  "name": "gecko-for-reddit",
+  "version": "0.0.1",
   "scripts": {
     "start": "expo start --dev-client",
     "android": "expo run:android",

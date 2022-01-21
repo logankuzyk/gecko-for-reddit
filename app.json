@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "cirrus-for-reddit",
-    "slug": "cirrus-for-reddit",
-    "version": "1.0.0",
+    "name": "gecko-for-reddit",
+    "slug": "gecko-for-reddit",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "cirrus",
+    "scheme": "gecko",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -24,7 +24,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.logankuzyk.cirrus"
+      "package": "com.logankuzyk.gecko"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"

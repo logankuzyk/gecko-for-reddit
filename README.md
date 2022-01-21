@@ -1,1 +1,1 @@
-# cirrus-for-reddit
+# gecko-for-reddit
