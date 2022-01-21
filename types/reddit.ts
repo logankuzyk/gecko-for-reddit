@@ -231,3 +231,9 @@ export interface MoreChildrenResponse {
   };
   errors: Array<string>;
 }
+
+export interface Paginated<T> {
+  after: string | null | undefined;
+  before: string | null | undefined;
+  data: T;
+}

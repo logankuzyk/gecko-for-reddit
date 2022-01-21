@@ -5,6 +5,7 @@ import { ActivityIndicator } from "react-native-paper";
 import { SubredditScreenView } from "./view";
 import { RootStackParamList } from "../../types/navigation";
 import { useSubmissions } from "../../hooks/useSubmissions";
+import { RedditSubmission } from "../../types/reddit";
 
 interface SubredditScreenControllerProps {
   navigation: StackNavigationProp<RootStackParamList, "Subreddit">;
@@ -14,11 +15,25 @@ interface SubredditScreenControllerProps {
 export const SubredditScreenController: React.FC<
   SubredditScreenControllerProps
 > = ({ navigation, subreddit }) => {
-  const submissions = useSubmissions(subreddit);
+  const { isSuccess, isLoading, fetchNextPage, data } =
+    useSubmissions(subreddit);
 
-  if (submissions.isSuccess) {
-    return <SubredditScreenView submissions={submissions.data} />;
+  const pages = data ? data.pages.map((page) => page.data) : [];
+
+  const submissions: RedditSubmission[] = Array.prototype.concat.apply(
+    [],
+    pages
+  );
+
+  const onListEnd = () => {
+    fetchNextPage();
+  };
+
+  if (isSuccess && submissions) {
+    return (
+      <SubredditScreenView submissions={submissions} onListEnd={onListEnd} />
+    );
   } else {
-    return <ActivityIndicator animating={submissions.isLoading} />;
+    return <ActivityIndicator animating={isLoading} />;
   }
 };

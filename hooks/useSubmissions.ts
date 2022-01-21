@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { useQuery } from "react-query";
+import { useInfiniteQuery } from "react-query";
 
 import { useAxios } from "./useAxios";
 import { useRedditContext } from "../contexts/RedditContext";
@@ -7,29 +7,47 @@ import {
   Listing,
   RedditSubmission,
   ListedRawSubmission,
+  Paginated,
 } from "../types/reddit";
 import { parseSubmission } from "../util/parseSubmission";
 
 const fetchSubmissions = async (
   axios: AxiosInstance,
   subreddit: string | undefined,
-  isLoggedIn: boolean
-): Promise<RedditSubmission[]> => {
-  const endpoint = subreddit
+  isLoggedIn: boolean,
+  pageParam: string | undefined
+): Promise<Paginated<RedditSubmission[]>> => {
+  let endpoint = subreddit
     ? `/r/${subreddit}.json`
     : isLoggedIn
     ? "/.json"
     : "/r/all.json";
 
+  if (pageParam) {
+    const params = new URLSearchParams();
+    params.append("after", pageParam);
+    endpoint += `?${params.toString()}`;
+  }
+
   const res = await axios.get<Listing<ListedRawSubmission>>(endpoint);
   const submissions = res.data.data.children;
-  return submissions.map((item) => parseSubmission(item.data));
+  const { after, before } = res.data.data;
+  return {
+    data: submissions.map((item) => parseSubmission(item.data)),
+    after,
+    before,
+  };
 };
 
 export const useSubmissions = (subreddit: string | undefined) => {
   const axios = useAxios();
   const { isLoggedIn } = useRedditContext();
-  return useQuery(["subreddit", subreddit, isLoggedIn], () =>
-    fetchSubmissions(axios, subreddit, isLoggedIn)
+  return useInfiniteQuery(
+    ["subreddit", subreddit, isLoggedIn],
+    ({ pageParam }) =>
+      fetchSubmissions(axios, subreddit, isLoggedIn, pageParam),
+    {
+      getNextPageParam: (lastPage) => lastPage.after,
+    }
   );
 };
