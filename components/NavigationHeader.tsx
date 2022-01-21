@@ -4,8 +4,9 @@ import { StackHeaderProps } from "@react-navigation/stack";
 
 export const NavigationHeader: React.FC<StackHeaderProps> = ({ options }) => {
   return (
-    <Appbar.Header>
-      <Appbar.Content title={options.headerTitle} />
-    </Appbar.Header>
+    // <Appbar.Header>
+    //   <Appbar.Content title={options.headerTitle} />
+    // </Appbar.Header>
+    <></>
   );
 };

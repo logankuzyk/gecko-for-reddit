@@ -23,7 +23,6 @@ export const Comment: React.FC<CommentProps> = ({
 
     const onLongPress = () => {
       setShowChildren(!showChildren);
-      console.log(showChildren);
     };
 
     return (

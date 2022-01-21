@@ -9,6 +9,7 @@ import {
   MoreChildren,
 } from "../../types/reddit";
 import { Seperator } from "../../components/reddit/lists/Seperator";
+import { Footer } from "../../components/reddit/lists/Footer";
 
 interface CommentsScreenViewProps {
   submission: RedditSubmission;
@@ -28,6 +29,7 @@ export const CommentsScreenView: React.FC<CommentsScreenViewProps> = ({
       renderItem={renderItem}
       ItemSeparatorComponent={Seperator}
       contentContainerStyle={styleSheet.flatList}
+      ListFooterComponent={Footer}
     />
   );
 };
