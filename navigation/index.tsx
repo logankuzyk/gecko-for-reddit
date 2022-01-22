@@ -8,17 +8,12 @@ import {
   TransitionPresets,
 } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
 
 import NotFoundScreen from "../screens/NotFoundScreen";
 import AuthScreen from "../screens/AuthScreen";
-import {
-  DrawerParamList,
-  RootStackParamList,
-  TabParamList,
-} from "../types/navigation";
+import { DrawerParamList, RootStackParamList } from "../types/navigation";
 import LinkingConfiguration from "./LinkingConfiguration";
 import SubredditScreen from "../screens/Subreddit";
 import CommentsScreen from "../screens/Comments";
@@ -61,17 +56,6 @@ const StackNavigator = () => {
   );
 };
 
-const Tab = createBottomTabNavigator<TabParamList>();
-
-const TabNavigator = () => {
-  return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
-      <Tab.Screen name="Home" component={StackNavigator} />
-      <Tab.Screen name="Inbox" component={NotFoundScreen} />
-    </Tab.Navigator>
-  );
-};
-
 const Drawer = createDrawerNavigator<DrawerParamList>();
 
 const DrawerNavigator = () => {
@@ -81,7 +65,7 @@ const DrawerNavigator = () => {
       screenOptions={{ headerShown: false }}
       drawerContent={DrawerScreen}
     >
-      <Drawer.Screen name="Root" component={TabNavigator} />
+      <Drawer.Screen name="Root" component={StackNavigator} />
       <Drawer.Screen name="Auth" component={AuthScreen} />
     </Drawer.Navigator>
   );

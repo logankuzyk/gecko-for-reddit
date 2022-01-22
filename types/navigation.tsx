@@ -1,6 +1,5 @@
 import { DrawerScreenProps } from "@react-navigation/drawer";
 import { StackScreenProps } from "@react-navigation/stack";
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 
 declare global {
   namespace ReactNavigation {
@@ -37,11 +36,3 @@ export type DrawerParamList = {
 
 export type RootDrawerScreenProps<Screen extends keyof DrawerParamList> =
   DrawerScreenProps<DrawerParamList, Screen>;
-
-export type TabParamList = {
-  Home: undefined;
-  Inbox: undefined;
-};
-
-export type TabScreenProps<Screen extends keyof TabParamList> =
-  BottomTabScreenProps<TabParamList, Screen>;
