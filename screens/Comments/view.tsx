@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
 
 import { styleSheet } from "../../styles/styleSheet";
 import { renderItem } from "../../components/reddit/lists/MixedContentList";
