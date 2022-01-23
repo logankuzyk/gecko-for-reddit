@@ -4,11 +4,13 @@ import BottomSheet from "@gorhom/bottom-sheet";
 
 import { Paragraph } from "../typography/Paragraph";
 
-interface BottomTabBarProps {
+interface BottomNavigationSheetProps {
   children: React.ReactNode;
 }
 
-export const BottomTabBar: React.FC<BottomTabBarProps> = ({ children }) => {
+export const BottomNavigationSheet: React.FC<BottomNavigationSheetProps> = ({
+  children,
+}) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
   const snapPoints = useMemo(() => ["10%", "60%"], []);
   const handleSheetChange = useCallback((index: number) => {

@@ -5,7 +5,7 @@ import { renderItem } from "../../components/reddit/submissions/Submission";
 import { RedditSubmission } from "../../types/reddit";
 import { Seperator } from "../../components/reddit/lists/Seperator";
 import { Footer } from "../../components/reddit/lists/Footer";
-import { BottomTabBar } from "../../components/navigation/BottomTabBar";
+import { BottomNavigationSheet } from "../../components/navigation/BottomNavigationSheet";
 
 interface SubredditScreenViewProps {
   submissions: RedditSubmission[];
@@ -17,7 +17,7 @@ export const SubredditScreenView: React.FC<SubredditScreenViewProps> = ({
   onListEnd,
 }) => {
   return (
-    <BottomTabBar>
+    <BottomNavigationSheet>
       <FlatList
         data={submissions}
         keyExtractor={({ id }) => id}
@@ -27,6 +27,6 @@ export const SubredditScreenView: React.FC<SubredditScreenViewProps> = ({
         onEndReachedThreshold={0}
         onEndReached={onListEnd}
       />
-    </BottomTabBar>
+    </BottomNavigationSheet>
   );
 };
