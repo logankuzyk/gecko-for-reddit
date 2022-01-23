@@ -1,9 +1,9 @@
 import React from "react";
 import { View, ViewStyle } from "react-native";
 
-import { RedditSubmission } from "../../types/reddit";
-import { Image } from "./Image";
-import { SelfText } from "./SelfText";
+import { RedditSubmission } from "../../../types/reddit";
+import { Image } from "../Image";
+import { SelfText } from "../SelfText";
 
 export interface SubmissionContent {
   submission: RedditSubmission;

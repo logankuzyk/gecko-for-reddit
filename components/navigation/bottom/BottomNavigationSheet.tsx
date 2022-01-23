@@ -2,7 +2,7 @@ import React, { useRef, useMemo, useCallback } from "react";
 import { View } from "react-native";
 import BottomSheet from "@gorhom/bottom-sheet";
 
-import { Paragraph } from "../typography/Paragraph";
+import { Paragraph } from "../../typography/Paragraph";
 
 interface BottomNavigationSheetProps {
   children: React.ReactNode;

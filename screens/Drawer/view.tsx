@@ -2,9 +2,9 @@ import React from "react";
 import { StatusBar, ScrollView } from "react-native";
 import { Button } from "react-native-paper";
 
-import { DrawerSection } from "../../components/DrawerSection";
-import { DrawerActions } from "../../components/DrawerActions";
-import { DrawerHeader } from "../../components/DrawerHeader";
+import { DrawerSection } from "../../components/navigation/drawer/DrawerSection";
+import { DrawerActions } from "../../components/navigation/drawer/DrawerActions";
+import { DrawerHeader } from "../../components/navigation/drawer/DrawerHeader";
 import { SearchBar } from "../../components/SearchBar";
 import { SearchResults } from "../../components/reddit/lists/SearchResults";
 import { ThingToLoad } from "../../types/reddit";

@@ -5,7 +5,7 @@ import { renderItem } from "../../components/reddit/submissions/Submission";
 import { RedditSubmission } from "../../types/reddit";
 import { Seperator } from "../../components/reddit/lists/Seperator";
 import { Footer } from "../../components/reddit/lists/Footer";
-import { BottomNavigationSheet } from "../../components/navigation/BottomNavigationSheet";
+import { BottomNavigationSheet } from "../../components/navigation/bottom/BottomNavigationSheet";
 
 interface SubredditScreenViewProps {
   submissions: RedditSubmission[];

@@ -2,10 +2,10 @@ import React from "react";
 import { View, ViewProps } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { Caption } from "./typography/Caption";
-import { useCurrentUser } from "../hooks/useCurrentUser";
-import { Icon } from "./reddit/Icon";
-import { TouchableListEntry } from "./TouchableListEntry";
+import { Caption } from "../../typography/Caption";
+import { useCurrentUser } from "../../../hooks/useCurrentUser";
+import { Icon } from "../../reddit/Icon";
+import { TouchableListEntry } from "../../TouchableListEntry";
 
 export const DrawerActions: React.FC<ViewProps> = ({ ...props }) => {
   const user = useCurrentUser();

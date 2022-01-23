@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Title } from "../../typography/Title";
 import { RedditSubmission } from "../../../types/reddit";
 import { Tagline } from "../Tagline";
-import { SubmissionContent } from "../SubmissionContent";
+import { SubmissionContent } from "./SubmissionContent";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 interface SubmissionCardProps {
