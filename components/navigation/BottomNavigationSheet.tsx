@@ -1,8 +1,9 @@
 import React, { useRef, useMemo, useCallback } from "react";
 import { View } from "react-native";
 import BottomSheet from "@gorhom/bottom-sheet";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-import { Paragraph } from "../typography/Paragraph";
+import { BottomSheetIcons } from "./BottomSheetIcons";
 
 interface BottomNavigationSheetProps {
   children: React.ReactNode;
@@ -42,7 +43,9 @@ export const BottomNavigationSheet: React.FC<BottomNavigationSheetProps> = ({
             elevation: 12,
           }}
         >
-          <Paragraph>hello</Paragraph>
+          <GestureHandlerRootView>
+            <BottomSheetIcons />
+          </GestureHandlerRootView>
         </View>
       </BottomSheet>
     </View>
