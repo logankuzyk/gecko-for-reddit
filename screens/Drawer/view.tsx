@@ -8,7 +8,7 @@ import { DrawerHeader } from "../../components/DrawerHeader";
 import { SearchBar } from "../../components/SearchBar";
 import { SearchResults } from "../../components/reddit/lists/SearchResults";
 import { ThingToLoad } from "../../types/reddit";
-import { Line } from "../../components/Line";
+import { Seperator } from "../../components/reddit/lists/Seperator";
 interface RootDrawerScreenViewProps {
   promptLogin: () => void;
   subreddits: Array<ThingToLoad> | undefined;
@@ -28,22 +28,25 @@ export const RootDrawerScreenView: React.FC<RootDrawerScreenViewProps> = ({
   return (
     <ScrollView
       contentContainerStyle={{
-        paddingHorizontal: 16,
         marginTop: StatusBar.currentHeight,
       }}
     >
-      <DrawerHeader />
-      <Line />
+      <DrawerSection show={true}>
+        <DrawerHeader />
+      </DrawerSection>
+      <Seperator />
       <DrawerSection show={true}>
         <DrawerActions />
       </DrawerSection>
-      <Line />
+      <Seperator />
       <DrawerSection title="User" show={true}>
         <Button onPress={promptLogin}>Login</Button>
       </DrawerSection>
-      <Line />
-      <SearchBar placeholder="Search" onChangeText={onChangeText} />
-      <Line />
+      <Seperator />
+      <DrawerSection show={true}>
+        <SearchBar placeholder="Search" onChangeText={onChangeText} />
+      </DrawerSection>
+      <Seperator />
       <DrawerSection title="Matching Users" show={showMatchingUsers}>
         <SearchResults entries={users} />
       </DrawerSection>

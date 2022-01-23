@@ -1,8 +1,8 @@
 import React from "react";
-import { View } from "react-native";
-import { Subheading } from "react-native-paper";
+import { View, ViewProps } from "react-native";
+import { Paragraph } from "./typography/Paragraph";
 
-interface DrawerSectionProps {
+interface DrawerSectionProps extends ViewProps {
   children: React.ReactNode;
   title?: string;
   show?: boolean;
@@ -12,15 +12,16 @@ export const DrawerSection: React.FC<DrawerSectionProps> = ({
   children,
   title,
   show,
+  ...props
 }) => {
   if (!show) {
     return <></>;
   }
 
-  const heading = title ? <Subheading>{title}</Subheading> : <></>;
+  const heading = title ? <Paragraph>{title}</Paragraph> : <></>;
 
   return (
-    <View>
+    <View style={{ marginHorizontal: 16 }} {...props}>
       {heading}
       {children}
     </View>

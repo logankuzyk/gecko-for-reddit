@@ -1,9 +1,8 @@
 import React from "react";
+import { ViewProps } from "react-native";
 
 import { Title } from "../components/typography/Title";
 
-interface DrawerHeaderProps {}
-
-export const DrawerHeader: React.FC<DrawerHeaderProps> = ({}) => {
-  return <Title>🦎 Gecko for reddit</Title>;
+export const DrawerHeader: React.FC<ViewProps> = ({ ...props }) => {
+  return <Title {...props}>🦎 Gecko for reddit</Title>;
 };

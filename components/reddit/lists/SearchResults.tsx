@@ -3,7 +3,6 @@ import { FlatList, ScrollView } from "react-native-gesture-handler";
 
 import { ThingToLoad } from "../../../types/reddit";
 import { renderItem } from "../../SearchPreview";
-import { Seperator } from "./Seperator";
 
 interface SearchResultsProps {
   entries: Array<ThingToLoad> | undefined;
@@ -17,7 +16,6 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ entries }) => {
         data={entries}
         keyExtractor={(item) => item.name}
         renderItem={renderItem}
-        ItemSeparatorComponent={Seperator}
       />
     </ScrollView>
   );

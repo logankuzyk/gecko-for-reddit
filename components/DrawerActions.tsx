@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View, ViewProps } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { Caption } from "./typography/Caption";
@@ -7,9 +7,7 @@ import { useCurrentUser } from "../hooks/useCurrentUser";
 import { Icon } from "./reddit/Icon";
 import { TouchableListEntry } from "./TouchableListEntry";
 
-interface DrawerActionsProps {}
-
-export const DrawerActions: React.FC<DrawerActionsProps> = ({}) => {
+export const DrawerActions: React.FC<ViewProps> = ({ ...props }) => {
   const user = useCurrentUser();
   const navigation = useNavigation();
 
@@ -21,7 +19,7 @@ export const DrawerActions: React.FC<DrawerActionsProps> = ({}) => {
     navigation.navigate("Subreddit", { subreddit });
 
   return (
-    <View>
+    <View {...props}>
       <TouchableListEntry onPress={goToProfile}>
         <Icon type="user" />
         <Caption>Profile</Caption>
