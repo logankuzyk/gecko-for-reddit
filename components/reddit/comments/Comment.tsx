@@ -50,7 +50,7 @@ export const Comment: React.FC<CommentProps> = ({
             </TouchableOpacity>
           </View>
         </ChildIndent>
-        {menuExpanded ? <CommentActionMenu /> : <></>}
+        {menuExpanded ? <CommentActionMenu comment={data} /> : <></>}
         {showChildren ? (
           data.replyTree.map((comment) => (
             <Comment data={comment} submissionFullname={submissionFullname} />
