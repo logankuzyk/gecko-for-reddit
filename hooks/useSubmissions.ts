@@ -30,10 +30,11 @@ const fetchSubmissions = async (
   }
 
   const res = await axios.get<Listing<ListedRawSubmission>>(endpoint);
+  const modhash = res.data.data.modhash;
   const submissions = res.data.data.children;
   const { after, before } = res.data.data;
   return {
-    data: submissions.map((item) => parseSubmission(item.data)),
+    data: submissions.map((item) => parseSubmission(item.data, modhash)),
     after,
     before,
   };

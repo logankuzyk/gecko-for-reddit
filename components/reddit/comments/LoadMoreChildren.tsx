@@ -20,7 +20,8 @@ export const LoadMoreChildren: React.FC<LoadMoreChildrenProps> = ({
   const comments = useMoreChildren(
     shouldLoad,
     moreChildren,
-    submissionFullname
+    submissionFullname,
+    moreChildren.modhash
   );
 
   const numberToLoad = moreChildren.children.length;

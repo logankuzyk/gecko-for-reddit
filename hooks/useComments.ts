@@ -12,7 +12,6 @@ import {
   ListedRawComment,
   ListedRawSubmission,
 } from "../types/reddit";
-import { determineSubmissionType } from "../util/determineSubmissionType";
 
 const fetchComments = async (
   axios: AxiosInstance,
@@ -25,12 +24,13 @@ const fetchComments = async (
   const submissionListing = res.data[0];
   const commentListing = res.data[1];
 
+  const modhash = submissionListing.data.modhash;
   const submission = submissionListing.data.children[0].data;
   const rawComments = commentListing.data.children;
 
-  const comments = parseComments(rawComments);
+  const comments = parseComments(rawComments, modhash);
 
-  return [parseSubmission(submission), comments];
+  return [parseSubmission(submission, modhash), comments];
 };
 
 export const useComments = (subreddit: string, postId: string) => {

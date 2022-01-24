@@ -3,7 +3,7 @@ export interface Listing<T> {
   data: {
     after?: string | null;
     before?: string | null;
-    modhash?: string;
+    modhash: string;
     children: Array<T>;
   };
 }
@@ -186,6 +186,7 @@ export interface RawMoreChildren {
 
 export interface MoreChildren extends RawMoreChildren {
   type: "more";
+  modhash: string;
 }
 
 export interface RedditSubmission extends RawSubmission {
@@ -193,6 +194,7 @@ export interface RedditSubmission extends RawSubmission {
   linkType: RedditLinkType;
   date: string;
   scoreString: string;
+  modhash: string;
 }
 
 export interface RedditComment extends RawComment {
@@ -200,6 +202,7 @@ export interface RedditComment extends RawComment {
   date: string;
   replyTree: Array<RedditComment | MoreChildren>;
   scoreString: string;
+  modhash: string;
 }
 
 export interface RedditUser extends RawUser {

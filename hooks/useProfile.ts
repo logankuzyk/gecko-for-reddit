@@ -22,16 +22,17 @@ const fetchProfile = async (
     `/u/${username}/.json`
   );
 
+  const modhash = res.data.data.modhash;
   const content = res.data.data.children
     .map((item) => {
       if (item.kind === "t3") {
-        const submission = parseSubmission(item.data);
+        const submission = parseSubmission(item.data, modhash);
         return submission;
       } else if (item.kind === "t1") {
-        const comment = parseComment(item.data);
+        const comment = parseComment(item.data, modhash);
         return comment;
       } else {
-        const more = parseMore(item.data);
+        const more = parseMore(item.data, modhash);
         return more;
       }
     })

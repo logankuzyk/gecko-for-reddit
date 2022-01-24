@@ -6,14 +6,14 @@ import { useAxios } from "./useAxios";
 import {
   RedditComment,
   MoreChildren,
-  RawComment,
   MoreChildrenResponse,
 } from "../types/reddit";
 
 const fetchMoreChildren = async (
   axios: AxiosInstance,
   moreChildren: MoreChildren,
-  linkFullname: string
+  linkFullname: string,
+  modhash: string
 ): Promise<
   RedditComment | MoreChildren | Array<RedditComment | MoreChildren>
 > => {
@@ -28,7 +28,7 @@ const fetchMoreChildren = async (
     `/api/morechildren?${params.toString()}`
   );
   const rawComments = res.data.json.data.things;
-  const comments = parseComments(rawComments);
+  const comments = parseComments(rawComments, modhash);
 
   return comments;
 };
@@ -36,12 +36,13 @@ const fetchMoreChildren = async (
 export const useMoreChildren = (
   enabled: boolean,
   moreChildren: MoreChildren,
-  linkFullname: string
+  linkFullname: string,
+  modhash: string
 ) => {
   const axios = useAxios();
   return useQuery(
     ["moreChildren", moreChildren.id],
-    () => fetchMoreChildren(axios, moreChildren, linkFullname),
+    () => fetchMoreChildren(axios, moreChildren, linkFullname, modhash),
     { enabled }
   );
 };
