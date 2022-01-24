@@ -19,9 +19,10 @@ export const Comment: React.FC<CommentProps> = ({
   submissionFullname,
 }) => {
   if (data.type === "comment") {
-    const { author, date, body, scoreString } = data;
+    const { author, date, body, scoreString, depth } = data;
     const [showChildren, setShowChildren] = useState<boolean>(true);
     const [menuExpanded, setMenuExpanded] = useState<boolean>(false);
+    const paddingRight = depth * 18;
 
     const handlePress = () => {
       setMenuExpanded(!menuExpanded);
@@ -33,8 +34,8 @@ export const Comment: React.FC<CommentProps> = ({
 
     return (
       <>
-        <ChildIndent depth={data.depth}>
-          <View key={data.id} style={{ paddingLeft: 18 }}>
+        <ChildIndent depth={depth}>
+          <View key={data.id} style={{ paddingLeft: 18, paddingRight }}>
             <TouchableOpacity
               onLongPress={handleLongPress}
               onPress={handlePress}
