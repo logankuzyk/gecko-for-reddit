@@ -6,6 +6,7 @@ import { ChildIndent } from "./ChildIndent";
 import { RedditComment, MoreChildren } from "../../../types/reddit";
 import { Tagline } from "../Tagline";
 import { LoadMoreChildren } from "./LoadMoreChildren";
+import { CommentActionMenu } from "./CommentActionMenu";
 
 interface CommentProps {
   data: RedditComment | MoreChildren;
@@ -20,31 +21,43 @@ export const Comment: React.FC<CommentProps> = ({
   if (data.type === "comment") {
     const { author, date, body, scoreString } = data;
     const [showChildren, setShowChildren] = useState<boolean>(true);
+    const [menuExpanded, setMenuExpanded] = useState<boolean>(false);
 
-    const onLongPress = () => {
+    const handlePress = () => {
+      setMenuExpanded(!menuExpanded);
+    };
+
+    const handleLongPress = () => {
       setShowChildren(!showChildren);
     };
 
     return (
-      <View key={data.id} style={{ paddingLeft: 18 }}>
-        <TouchableOpacity onLongPress={onLongPress} style={{ marginBottom: 8 }}>
-          <View style={{ marginTop: 8 }}>
-            <Tagline content={[author, scoreString, date]} type="comment" />
+      <>
+        <ChildIndent depth={data.depth}>
+          <View key={data.id} style={{ paddingLeft: 18 }}>
+            <TouchableOpacity
+              onLongPress={handleLongPress}
+              onPress={handlePress}
+              style={{ marginBottom: 8 }}
+            >
+              <View style={{ marginTop: 8 }}>
+                <Tagline content={[author, scoreString, date]} type="comment" />
+              </View>
+              <View style={{ marginTop: 4 }}>
+                <Paragraph>{body}</Paragraph>
+              </View>
+            </TouchableOpacity>
           </View>
-          <View style={{ marginTop: 4 }}>
-            <Paragraph>{body}</Paragraph>
-          </View>
-        </TouchableOpacity>
+        </ChildIndent>
+        {menuExpanded ? <CommentActionMenu /> : <></>}
         {showChildren ? (
           data.replyTree.map((comment) => (
-            <ChildIndent depth={comment.depth + 1}>
-              <Comment data={comment} submissionFullname={submissionFullname} />
-            </ChildIndent>
+            <Comment data={comment} submissionFullname={submissionFullname} />
           ))
         ) : (
           <></>
         )}
-      </View>
+      </>
     );
   } else {
     return (

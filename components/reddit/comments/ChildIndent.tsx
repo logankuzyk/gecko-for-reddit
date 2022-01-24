@@ -21,21 +21,28 @@ export const ChildIndent: React.FC<ChildIndentProps> = ({
     colors.red["500"],
   ];
 
-  const trueDepth = depth - 2;
+  const indentColors = replyColors.slice(0, depth);
 
-  const color =
-    trueDepth < replyColors.length
-      ? replyColors[trueDepth]
-      : replyColors[trueDepth % replyColors.length];
-
-  return (
-    <View
-      style={{
-        borderLeftWidth: 2,
-        borderColor: color,
-      }}
-    >
-      {children}
-    </View>
-  );
+  if (depth === 0) {
+    return <>{children}</>;
+  } else {
+    return (
+      <View
+        style={{
+          flexDirection: "row",
+        }}
+      >
+        {indentColors.map((color) => (
+          <View
+            style={{
+              marginLeft: 18,
+              width: 2,
+              backgroundColor: color,
+            }}
+          />
+        ))}
+        {children}
+      </View>
+    );
+  }
 };

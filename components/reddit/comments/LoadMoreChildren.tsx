@@ -5,6 +5,7 @@ import { Comment } from "./Comment";
 import { MoreChildren } from "../../../types/reddit";
 import { useMoreChildren } from "../../../hooks/useMoreChildren";
 import { Paragraph } from "../../typography/Paragraph";
+import { ChildIndent } from "./ChildIndent";
 
 interface LoadMoreChildrenProps {
   submissionFullname: string;
@@ -29,12 +30,14 @@ export const LoadMoreChildren: React.FC<LoadMoreChildrenProps> = ({
 
   if (!comments.data) {
     return (
-      <TouchableOpacity
-        style={{ paddingLeft: 18, paddingVertical: 8 }}
-        onPress={onPress}
-      >
-        <Paragraph>Show More ({numberToLoad})</Paragraph>
-      </TouchableOpacity>
+      <ChildIndent depth={moreChildren.depth}>
+        <TouchableOpacity
+          style={{ paddingLeft: 18, paddingVertical: 8 }}
+          onPress={onPress}
+        >
+          <Paragraph>Show More ({numberToLoad})</Paragraph>
+        </TouchableOpacity>
+      </ChildIndent>
     );
   } else if (Array.isArray(comments.data)) {
     return (
