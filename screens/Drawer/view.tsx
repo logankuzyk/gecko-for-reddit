@@ -34,19 +34,19 @@ export const RootDrawerScreenView: React.FC<RootDrawerScreenViewProps> = ({
       <DrawerSection show={true}>
         <DrawerHeader />
       </DrawerSection>
-      <Seperator />
+      <Seperator marginVertical={8} />
       <DrawerSection show={true}>
         <DrawerActions />
       </DrawerSection>
-      <Seperator />
+      <Seperator marginVertical={8} />
       <DrawerSection title="User" show={true}>
         <Button onPress={promptLogin}>Login</Button>
       </DrawerSection>
-      <Seperator />
+      <Seperator marginVertical={8} />
       <DrawerSection show={true}>
         <SearchBar placeholder="Search" onChangeText={onChangeText} />
       </DrawerSection>
-      <Seperator />
+      <Seperator marginVertical={8} />
       <DrawerSection title="Matching Users" show={showMatchingUsers}>
         <SearchResults entries={users} />
       </DrawerSection>

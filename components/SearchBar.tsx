@@ -16,25 +16,17 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   value,
 }) => {
   return (
-    <View
+    <TextInput
+      placeholder={placeholder}
+      onChangeText={onChangeText}
+      onBlur={handleBlur}
+      value={value}
+      autoCapitalize="none"
+      maxLength={20}
+      clearButtonMode="always"
       style={{
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
+        height: 48,
       }}
-    >
-      <TextInput
-        placeholder={placeholder}
-        onChangeText={onChangeText}
-        onBlur={handleBlur}
-        value={value}
-        autoCapitalize="none"
-        maxLength={20}
-        clearButtonMode="always"
-        style={{
-          height: 48,
-        }}
-      />
-    </View>
+    />
   );
 };
