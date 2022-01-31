@@ -6,7 +6,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { colors } from "../../styles/colors";
 
 interface IconProps {
-  type: "user" | "subreddit" | "frontpage" | "all" | "popular";
+  type: "user" | "subreddit" | "frontpage" | "all" | "popular" | "users";
   uri?: string | null | undefined;
 }
 
@@ -38,6 +38,7 @@ export const Icon: React.FC<IconProps> = ({ type, uri }) => {
 
   const icons = {
     user: "user",
+    users: "users",
     all: "poll",
     frontpage: "house-user",
     popular: "rocket",

@@ -39,10 +39,6 @@ export const RootDrawerScreenView: React.FC<RootDrawerScreenViewProps> = ({
         <DrawerActions />
       </DrawerSection>
       <Seperator marginVertical={8} />
-      <DrawerSection title="User" show={true}>
-        <Button onPress={promptLogin}>Login</Button>
-      </DrawerSection>
-      <Seperator marginVertical={8} />
       <DrawerSection show={true}>
         <SearchBar placeholder="Search" onChangeText={onChangeText} />
       </DrawerSection>
