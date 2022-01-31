@@ -1,7 +1,7 @@
 import React from "react";
 import { Image as RNImage } from "react-native";
 
-import { RedditSubmission } from "../../types/reddit";
+import { RedditSubmission } from "../../../types/reddit";
 
 interface ImageProps {
   submission: RedditSubmission;

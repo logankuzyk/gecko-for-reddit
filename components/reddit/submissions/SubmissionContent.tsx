@@ -2,8 +2,9 @@ import React from "react";
 import { View, ViewStyle } from "react-native";
 
 import { RedditSubmission } from "../../../types/reddit";
-import { Image } from "../Image";
-import { SelfText } from "../SelfText";
+import { Image } from "../media/Image";
+import { SelfText } from "../media/SelfText";
+import { VideoThumbnail } from "../media/VideoThumbnail";
 
 export interface SubmissionContent {
   submission: RedditSubmission;
@@ -14,6 +15,7 @@ export const SubmissionContent: React.FC<SubmissionContent> = ({
   submission,
   style,
 }) => {
+  // Content handlers will be activated onPress once they're implemented
   const { linkType } = submission;
 
   if (linkType === "image") {
@@ -29,7 +31,11 @@ export const SubmissionContent: React.FC<SubmissionContent> = ({
       </View>
     );
   } else if (linkType === "video") {
-    return <></>;
+    return (
+      <View style={style}>
+        <VideoThumbnail submission={submission} />
+      </View>
+    );
   } else {
     return <></>;
   }
