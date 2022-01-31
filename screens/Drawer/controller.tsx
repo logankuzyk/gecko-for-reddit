@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { DrawerNavigationHelpers } from "@react-navigation/drawer/lib/typescript/src/types";
 
 import { RootDrawerScreenView } from "./view";
-import { useRedditContext } from "../../contexts/RedditContext";
 import { useSearch } from "../../hooks/useSearch";
 import { ThingToLoad } from "../../types/reddit";
 
@@ -14,10 +13,9 @@ export const RootDrawerScreenController: React.FC<
   RootDrawerScreenControllerProps
 > = ({ navigation }) => {
   const [query, setQuery] = useState<string>("");
-  const { promptLogin } = useRedditContext();
 
-  const subreddits = useSearch(query);
-  const users: Array<ThingToLoad> | undefined = query
+  const subredditResults = useSearch(query);
+  const userResults: Array<ThingToLoad> | undefined = query
     ? [
         {
           type: "user",
@@ -37,9 +35,8 @@ export const RootDrawerScreenController: React.FC<
   return (
     <RootDrawerScreenView
       onChangeText={onChangeText}
-      promptLogin={promptLogin}
-      subreddits={subreddits.data}
-      users={users}
+      subreddits={subredditResults.data}
+      users={userResults}
     />
   );
 };

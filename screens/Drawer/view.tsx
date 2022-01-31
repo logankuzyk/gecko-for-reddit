@@ -1,6 +1,5 @@
 import React from "react";
 import { StatusBar, ScrollView } from "react-native";
-import { Button } from "react-native-paper";
 
 import { DrawerSection } from "../../components/navigation/drawer/DrawerSection";
 import { DrawerActions } from "../../components/navigation/drawer/DrawerActions";
@@ -9,15 +8,15 @@ import { SearchBar } from "../../components/SearchBar";
 import { SearchResults } from "../../components/reddit/lists/SearchResults";
 import { ThingToLoad } from "../../types/reddit";
 import { Seperator } from "../../components/reddit/lists/Seperator";
+import { JoinedSubreddits } from "../../components/reddit/lists/JoinedSubreddits";
+
 interface RootDrawerScreenViewProps {
-  promptLogin: () => void;
   subreddits: Array<ThingToLoad> | undefined;
   onChangeText: (input: string) => void;
   users: Array<ThingToLoad> | undefined;
 }
 
 export const RootDrawerScreenView: React.FC<RootDrawerScreenViewProps> = ({
-  promptLogin,
   onChangeText,
   users,
   subreddits,
@@ -48,6 +47,9 @@ export const RootDrawerScreenView: React.FC<RootDrawerScreenViewProps> = ({
       </DrawerSection>
       <DrawerSection title="Matching Subreddits" show={showMatchingSubreddits}>
         <SearchResults entries={subreddits} />
+      </DrawerSection>
+      <DrawerSection title="Subscribed" show={true}>
+        <JoinedSubreddits />
       </DrawerSection>
     </ScrollView>
   );
