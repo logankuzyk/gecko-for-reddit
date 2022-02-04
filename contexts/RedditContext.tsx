@@ -31,6 +31,7 @@ interface RedditContextValue {
   setAccessCode: Dispatch<SetStateAction<string | undefined>>;
   stateCode: string | undefined;
   setStateCode: Dispatch<SetStateAction<string | undefined>>;
+  logout: () => Promise<void>;
 }
 
 const initialValue: RedditContextValue = {
@@ -44,6 +45,7 @@ const initialValue: RedditContextValue = {
   setAccessCode: () => {},
   stateCode: undefined,
   setStateCode: () => {},
+  logout: async () => {},
 };
 
 export const RedditContext = createContext(initialValue);
@@ -62,7 +64,11 @@ export const RedditProvider: React.FC = ({ children }) => {
     Token | undefined
   >();
   const clientToken = useClientCredentials();
-  const userToken = useUserCredentials(accessCode, redirectUri);
+  const userToken = useUserCredentials(
+    accessCode,
+    userCredentials?.refreshToken,
+    redirectUri
+  );
 
   // CREDENTIAL QUERIES
 
@@ -142,6 +148,11 @@ export const RedditProvider: React.FC = ({ children }) => {
     await WebBrowser.openBrowserAsync(loginUrl);
   };
 
+  const logout = async () => {
+    setUserCredentials(undefined);
+    setAccessCode(undefined);
+  };
+
   return (
     <RedditContext.Provider
       value={{
@@ -155,6 +166,7 @@ export const RedditProvider: React.FC = ({ children }) => {
         setAccessCode,
         stateCode,
         setStateCode,
+        logout,
       }}
     >
       {children}
