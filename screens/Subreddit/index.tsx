@@ -3,7 +3,7 @@ import { SubredditScreenController } from "./controller";
 
 import { RootStackScreenProps } from "../../types/navigation";
 
-const SettingsScreenProvider: React.FC<RootStackScreenProps<"Subreddit">> = ({
+const SubredditScreenProvider: React.FC<RootStackScreenProps<"Subreddit">> = ({
   navigation,
   route,
 }) => {
@@ -14,4 +14,4 @@ const SettingsScreenProvider: React.FC<RootStackScreenProps<"Subreddit">> = ({
   );
 };
 
-export default SettingsScreenProvider;
+export default SubredditScreenProvider;

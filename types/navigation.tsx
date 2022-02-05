@@ -11,6 +11,7 @@ export type RootStackParamList = {
   Root: undefined;
   Modal: undefined;
   NotFound: undefined;
+  Settings: undefined;
   Subreddit: {
     subreddit: string;
   };
