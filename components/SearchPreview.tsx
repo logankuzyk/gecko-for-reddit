@@ -6,7 +6,7 @@ import { ActivityIndicator } from "react-native-paper";
 import { Caption } from "./typography/Caption";
 import { ThingToLoad } from "../types/reddit";
 import { Icon } from "./reddit/Icon";
-import { TouchableListEntry } from "./TouchableListEntry";
+import { TouchableListEntry } from "./reddit/lists/TouchableListEntry";
 import { useThingToLoad } from "../hooks/useThingToLoad";
 
 interface SearchItemProps {

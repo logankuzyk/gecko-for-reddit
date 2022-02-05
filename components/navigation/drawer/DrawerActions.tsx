@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Caption } from "../../typography/Caption";
 import { useCurrentUser } from "../../../hooks/useCurrentUser";
 import { Icon } from "../../reddit/Icon";
-import { TouchableListEntry } from "../../TouchableListEntry";
+import { TouchableListEntry } from "../../reddit/lists/TouchableListEntry";
 import { useRedditContext } from "../../../contexts/RedditContext";
 
 export const DrawerActions: React.FC<ViewProps> = ({ ...props }) => {

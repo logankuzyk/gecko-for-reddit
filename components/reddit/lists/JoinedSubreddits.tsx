@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Icon } from "../Icon";
 import { Caption } from "../../typography/Caption";
 import { useJoinedSubreddits } from "../../../hooks/useJoinedSubreddits";
-import { TouchableListEntry } from "../../TouchableListEntry";
+import { TouchableListEntry } from "./TouchableListEntry";
 
 export const JoinedSubreddits: React.FC = () => {
   const subreddits = useJoinedSubreddits();
