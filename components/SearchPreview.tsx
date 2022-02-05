@@ -5,7 +5,7 @@ import { ActivityIndicator } from "react-native-paper";
 
 import { Caption } from "./typography/Caption";
 import { ThingToLoad } from "../types/reddit";
-import { Icon } from "./reddit/Icon";
+import { ImageOrIcon } from "./reddit/ImageOrIcon";
 import { TouchableListEntry } from "./reddit/lists/TouchableListEntry";
 import { useThingToLoad } from "../hooks/useThingToLoad";
 
@@ -41,7 +41,7 @@ export const SearchItem: React.FC<SearchItemProps> = ({ item }) => {
 
   return (
     <TouchableListEntry onPress={onPress}>
-      <Icon type={item.type} uri={img} />
+      <ImageOrIcon type={item.type} uri={img} />
       <Caption>{title}</Caption>
     </TouchableListEntry>
   );

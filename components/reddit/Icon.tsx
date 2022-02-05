@@ -1,41 +1,14 @@
 import React from "react";
-import { Image, View } from "react-native";
-import { Subheading } from "react-native-paper";
 import { FontAwesome5 } from "@expo/vector-icons";
 
-import { colors } from "../../styles/colors";
+import { Paragraph } from "../typography/Paragraph";
+import { Circle } from "./Circle";
 
 interface IconProps {
   type: "user" | "subreddit" | "frontpage" | "all" | "popular" | "users";
-  uri?: string | null | undefined;
 }
 
-const Circle: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const height = 32;
-  const width = 32;
-  const borderRadius = width / 2;
-
-  return (
-    <View
-      style={{
-        height,
-        width,
-        borderRadius,
-        backgroundColor: colors.grey["300"],
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      {children}
-    </View>
-  );
-};
-
-export const Icon: React.FC<IconProps> = ({ type, uri }) => {
-  const height = 32;
-  const width = 32;
-  const borderRadius = width / 2;
-
+export const Icon: React.FC<IconProps> = ({ type }) => {
   const icons = {
     user: "user",
     users: "users",
@@ -44,18 +17,10 @@ export const Icon: React.FC<IconProps> = ({ type, uri }) => {
     popular: "rocket",
   };
 
-  if (uri) {
-    return <Image source={{ uri }} style={{ height, width, borderRadius }} />;
-  } else if (type === "subreddit") {
+  if (type === "subreddit") {
     return (
       <Circle>
-        <Subheading>/r/</Subheading>
-      </Circle>
-    );
-  } else if (type === "user") {
-    return (
-      <Circle>
-        <FontAwesome5 solid name="user" />
+        <Paragraph>/r/</Paragraph>
       </Circle>
     );
   } else if (icons[type]) {
