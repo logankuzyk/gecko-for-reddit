@@ -5,7 +5,7 @@ import { ActivityIndicator } from "react-native-paper";
 
 import { Caption } from "./typography/Caption";
 import { ThingToLoad } from "../types/reddit";
-import { ImageOrIcon } from "./reddit/ImageOrIcon";
+import { ImageOrIcon } from "./icons/ImageOrIcon";
 import { TouchableListEntry } from "./reddit/lists/TouchableListEntry";
 import { useThingToLoad } from "../hooks/useThingToLoad";
 
@@ -40,10 +40,12 @@ export const SearchItem: React.FC<SearchItemProps> = ({ item }) => {
     content.type === "subreddit" ? content.display_name : content.name;
 
   return (
-    <TouchableListEntry onPress={onPress}>
-      <ImageOrIcon type={item.type} uri={img} />
-      <Caption>{title}</Caption>
-    </TouchableListEntry>
+    <TouchableListEntry
+      onPress={onPress}
+      uri={img}
+      title={title}
+      type={content.type}
+    />
   );
 };
 

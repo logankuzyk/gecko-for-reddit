@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { Caption } from "../../typography/Caption";
 import { useCurrentUser } from "../../../hooks/useCurrentUser";
-import { Icon } from "../../reddit/Icon";
+import { Icon } from "../../icons/Icon";
 import { TouchableListEntry } from "../../reddit/lists/TouchableListEntry";
 import { useRedditContext } from "../../../contexts/RedditContext";
 
@@ -46,30 +46,35 @@ export const DrawerActions: React.FC<ViewProps> = ({ ...props }) => {
     <View {...props}>
       {isLoggedIn ? (
         <>
-          <TouchableListEntry onPress={goToProfile}>
-            <Icon type="user" />
-            <Caption>Profile</Caption>
-          </TouchableListEntry>
-          <TouchableListEntry onPress={() => goToSubreddit("")}>
-            <Icon type="frontpage" />
-            <Caption>Frontpage</Caption>
-          </TouchableListEntry>
+          <TouchableListEntry
+            onPress={goToProfile}
+            title="Profile"
+            type="user"
+          />
+          <TouchableListEntry
+            onPress={() => goToSubreddit("")}
+            title="Frontpage"
+            type="frontpage"
+          />
         </>
       ) : (
         <></>
       )}
-      <TouchableListEntry onPress={() => handleManageAccounts()}>
-        <Icon type="users" />
-        <Caption>{isLoggedIn ? "Accounts" : "Login"}</Caption>
-      </TouchableListEntry>
-      <TouchableListEntry onPress={() => goToSubreddit("all")}>
-        <Icon type="all" />
-        <Caption>All</Caption>
-      </TouchableListEntry>
-      <TouchableListEntry onPress={() => goToSubreddit("popular")}>
-        <Icon type="popular" />
-        <Caption>Popular</Caption>
-      </TouchableListEntry>
+      <TouchableListEntry
+        onPress={() => handleManageAccounts()}
+        type="users"
+        title={isLoggedIn ? "Accounts" : "Login"}
+      />
+      <TouchableListEntry
+        onPress={() => goToSubreddit("all")}
+        type="all"
+        title="All"
+      />
+      <TouchableListEntry
+        onPress={() => goToSubreddit("popular")}
+        type="popular"
+        title="Popular"
+      />
     </View>
   );
 };

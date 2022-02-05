@@ -1,11 +1,12 @@
 import React from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
 
+import { IconOptions } from "../../types/app";
 import { Paragraph } from "../typography/Paragraph";
 import { Circle } from "./Circle";
 
 interface IconProps {
-  type: "user" | "subreddit" | "frontpage" | "all" | "popular" | "users";
+  type: IconOptions;
 }
 
 export const Icon: React.FC<IconProps> = ({ type }) => {
@@ -15,6 +16,7 @@ export const Icon: React.FC<IconProps> = ({ type }) => {
     all: "poll",
     frontpage: "house-user",
     popular: "rocket",
+    settings: "cog",
   };
 
   if (type === "subreddit") {

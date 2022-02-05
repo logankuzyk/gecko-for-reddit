@@ -1,14 +1,23 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+
+import { Icon } from "../../icons/Icon";
+import { ImageOrIcon } from "../../icons/ImageOrIcon";
+import { IconOptions } from "../../../types/app";
+import { Caption } from "../../typography/Caption";
 
 interface TouchableListEntryProps {
-  children: React.ReactNode;
   onPress: () => void;
+  type: IconOptions;
+  title: string;
+  uri?: string | null;
 }
 
 export const TouchableListEntry: React.FC<TouchableListEntryProps> = ({
-  children,
   onPress,
+  type,
+  title,
+  uri,
 }) => {
   return (
     <TouchableOpacity
@@ -20,7 +29,12 @@ export const TouchableListEntry: React.FC<TouchableListEntryProps> = ({
         justifyContent: "space-between",
       }}
     >
-      {children}
+      {(uri && type === "subreddit") || type === "user" ? (
+        <ImageOrIcon type={type} uri={uri} />
+      ) : (
+        <Icon type={type} />
+      )}
+      <Caption>{title}</Caption>
     </TouchableOpacity>
   );
 };
