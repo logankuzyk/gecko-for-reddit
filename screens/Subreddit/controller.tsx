@@ -1,7 +1,7 @@
 import React from "react";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { ActivityIndicator } from "react-native-paper";
 
+import { Loading } from "../../components/Loading";
 import { SubredditScreenView } from "./view";
 import { RootStackParamList } from "../../types/navigation";
 import { useSubmissions } from "../../hooks/useSubmissions";
@@ -34,6 +34,6 @@ export const SubredditScreenController: React.FC<
       <SubredditScreenView submissions={submissions} onListEnd={onListEnd} />
     );
   } else {
-    return <ActivityIndicator animating={isLoading} />;
+    return <Loading />;
   }
 };

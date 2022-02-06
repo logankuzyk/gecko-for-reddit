@@ -1,11 +1,9 @@
 import React from "react";
 import { ListRenderItem } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { ActivityIndicator } from "react-native-paper";
 
-import { Caption } from "./typography/Caption";
+import { Loading } from "./Loading";
 import { ThingToLoad } from "../types/reddit";
-import { ImageOrIcon } from "./icons/ImageOrIcon";
 import { TouchableListEntry } from "./reddit/lists/TouchableListEntry";
 import { useThingToLoad } from "../hooks/useThingToLoad";
 
@@ -19,7 +17,7 @@ export const SearchItem: React.FC<SearchItemProps> = ({ item }) => {
   const query = useLoad(item.name);
 
   if (query.isLoading) {
-    return <ActivityIndicator />;
+    return <Loading />;
   } else if (!query.data) {
     return <></>;
   }
