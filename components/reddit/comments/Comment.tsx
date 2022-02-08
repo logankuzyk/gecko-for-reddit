@@ -1,12 +1,12 @@
 import React, { useState, useMemo, useCallback } from "react";
 import { View, TouchableOpacity } from "react-native";
 
-import { Paragraph } from "../../typography/Paragraph";
 import { ChildIndent } from "./ChildIndent";
 import { RedditComment, MoreChildren } from "../../../types/reddit";
 import { Tagline } from "../Tagline";
 import { LoadMoreChildren } from "./LoadMoreChildren";
 import { CommentActionMenu } from "./CommentActionMenu";
+import { Markdown } from "../media/Markdown";
 
 interface CommentProps {
   data: RedditComment | MoreChildren;
@@ -19,7 +19,7 @@ export const Comment: React.FC<CommentProps> = ({
   submissionFullname,
 }) => {
   if (data.type === "comment") {
-    const { author, date, body, scoreString } = data;
+    const { author, date, scoreString, body } = data;
     const depth = useMemo(() => (data.depth ? data.depth : 0), [data.depth]);
     const [showChildren, setShowChildren] = useState<boolean>(true);
     const [menuExpanded, setMenuExpanded] = useState<boolean>(false);
@@ -36,7 +36,10 @@ export const Comment: React.FC<CommentProps> = ({
     return (
       <>
         <ChildIndent depth={depth}>
-          <View key={data.id} style={{ paddingLeft: 18, paddingRight }}>
+          <View
+            key={data.id}
+            style={{ paddingLeft: 18, paddingRight, marginTop: 6 }}
+          >
             <TouchableOpacity
               onLongPress={handleLongPress}
               onPress={handlePress}
@@ -45,9 +48,7 @@ export const Comment: React.FC<CommentProps> = ({
               <View style={{ marginTop: 8 }}>
                 <Tagline content={[author, scoreString, date]} type="comment" />
               </View>
-              <View style={{ marginTop: 4 }}>
-                <Paragraph>{body}</Paragraph>
-              </View>
+              <Markdown>{body}</Markdown>
             </TouchableOpacity>
           </View>
         </ChildIndent>

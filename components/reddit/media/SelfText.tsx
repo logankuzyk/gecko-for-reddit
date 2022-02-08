@@ -1,9 +1,9 @@
 import React from "react";
 import { View } from "react-native";
 
-import { Paragraph } from "../../typography/Paragraph";
 import { RedditSubmission } from "../../../types/reddit";
 import { colors } from "../../../styles/colors";
+import { Markdown } from "./Markdown";
 
 interface SelfTextProps {
   submission: RedditSubmission;
@@ -23,7 +23,7 @@ export const SelfText: React.FC<SelfTextProps> = ({ submission }) => {
           borderColor: colors.grey["300"],
         }}
       >
-        <Paragraph>{selftext}</Paragraph>
+        <Markdown>{selftext}</Markdown>
       </View>
     );
   } else {

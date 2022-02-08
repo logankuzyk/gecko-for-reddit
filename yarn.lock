@@ -2535,6 +2535,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/markdown-it@npm:^0.0.4":
+  version: 0.0.4
+  resolution: "@types/markdown-it@npm:0.0.4"
+  checksum: 31c4d5c6567d9e1da19f78aa5b0d9532029eca573d4ae75c31042086f6d2e312c104611c5f769aafa25faf0be75a47196cac7bea252c98863c71b0d168e76e36
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*":
   version: 17.0.1
   resolution: "@types/node@npm:17.0.1"
@@ -2567,6 +2574,15 @@ __metadata:
   version: 0.2.0
   resolution: "@types/react-native-base64@npm:0.2.0"
   checksum: 6a562ae758dfd06f152a559f7380a7a2da783bf14e70eef8bd4aae0df9dc5971a71888b74e8db552546b94ada198bfc3b6d7db51dd537a8f21767d8729bd10e7
+  languageName: node
+  linkType: hard
+
+"@types/react-native@npm:>=0.50.0":
+  version: 0.66.15
+  resolution: "@types/react-native@npm:0.66.15"
+  dependencies:
+    "@types/react": "*"
+  checksum: 1ce56a3c44e279dcbb5f5f08d332dad59d1b11257afee3291e82ab0ad51a8c4ad1fc74e3cb9f3516f8c26371de67ec0a36ce627a408b4fc2cb10626c43267d7b
   languageName: node
   linkType: hard
 
@@ -4353,6 +4369,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"entities@npm:~1.1.1":
+  version: 1.1.2
+  resolution: "entities@npm:1.1.2"
+  checksum: d537b02799bdd4784ffd714d000597ed168727bddf4885da887c5a491d735739029a00794f1998abbf35f3f6aeda32ef5c15010dca1817d401903a501b6d3e05
+  languageName: node
+  linkType: hard
+
 "env-paths@npm:^2.2.0":
   version: 2.2.1
   resolution: "env-paths@npm:2.2.1"
@@ -5275,6 +5298,7 @@ __metadata:
     react-native-base64: ^0.2.1
     react-native-dotenv: ^3.3.0
     react-native-gesture-handler: ~1.10.2
+    react-native-markdown-renderer: ^3.2.8
     react-native-progress: ^5.0.0
     react-native-reanimated: ~2.2.0
     react-native-safe-area-context: 3.3.2
@@ -6950,6 +6974,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"linkify-it@npm:^2.0.0":
+  version: 2.2.0
+  resolution: "linkify-it@npm:2.2.0"
+  dependencies:
+    uc.micro: ^1.0.1
+  checksum: d198871d0b3f3cfdb745dae564bfd6743474f20cd0ef1057e6ca29451834749e7f3da52b59b4de44e98f31a1e5c71bdad160490d4ae54de251cbcde57e4d7837
+  languageName: node
+  linkType: hard
+
 "locate-path@npm:^3.0.0":
   version: 3.0.0
   resolution: "locate-path@npm:3.0.0"
@@ -7177,6 +7210,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"markdown-it@npm:^8.4.0":
+  version: 8.4.2
+  resolution: "markdown-it@npm:8.4.2"
+  dependencies:
+    argparse: ^1.0.7
+    entities: ~1.1.1
+    linkify-it: ^2.0.0
+    mdurl: ^1.0.1
+    uc.micro: ^1.0.5
+  bin:
+    markdown-it: bin/markdown-it.js
+  checksum: ad171466933d6ce33fcdddf32f641fc7ff238820a11397f07d45ab293e3fd6d83de14eaa59bfdc67dc4a715e73aa08bae9b2a38e44b119d7340d8ae691ca4b2d
+  languageName: node
+  linkType: hard
+
 "match-sorter@npm:^6.0.2":
   version: 6.3.1
   resolution: "match-sorter@npm:6.3.1"
@@ -7202,6 +7250,13 @@ __metadata:
   version: 2.0.14
   resolution: "mdn-data@npm:2.0.14"
   checksum: 9d0128ed425a89f4cba8f787dca27ad9408b5cb1b220af2d938e2a0629d17d879a34d2cb19318bdb26c3f14c77dd5dfbae67211f5caaf07b61b1f2c5c8c7dc16
+  languageName: node
+  linkType: hard
+
+"mdurl@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "mdurl@npm:1.0.1"
+  checksum: 71731ecba943926bfbf9f9b51e28b5945f9411c4eda80894221b47cc105afa43ba2da820732b436f0798fd3edbbffcd1fc1415843c41a87fea08a41cc1e3d02b
   languageName: node
   linkType: hard
 
@@ -8711,6 +8766,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prop-types@npm:^15.5.10":
+  version: 15.8.1
+  resolution: "prop-types@npm:15.8.1"
+  dependencies:
+    loose-envify: ^1.4.0
+    object-assign: ^4.1.1
+    react-is: ^16.13.1
+  checksum: c056d3f1c057cb7ff8344c645450e14f088a915d078dcda795041765047fa080d38e5d626560ccaac94a4e16e3aa15f3557c1a9a8d1174530955e992c675e459
+  languageName: node
+  linkType: hard
+
 "prop-types@npm:^15.6.0, prop-types@npm:^15.7.2":
   version: 15.7.2
   resolution: "prop-types@npm:15.7.2"
@@ -8843,7 +8909,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:^16.13.0, react-is@npm:^16.7.0, react-is@npm:^16.8.1":
+"react-is@npm:^16.13.0, react-is@npm:^16.13.1, react-is@npm:^16.7.0, react-is@npm:^16.8.1":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: f7a19ac3496de32ca9ae12aa030f00f14a3d45374f1ceca0af707c831b2a6098ef0d6bdae51bd437b0a306d7f01d4677fcc8de7c0d331eb47ad0f46130e53c5f
@@ -8877,6 +8943,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-fit-image@npm:^1.5.2":
+  version: 1.5.5
+  resolution: "react-native-fit-image@npm:1.5.5"
+  dependencies:
+    prop-types: ^15.5.10
+  checksum: 2f3ce06b43191efe3a4bd0698a4117342d821455c96433e9561d50f156ee446d2c449bf9e0908f9a8b7bbb8f95c02478d4fca8d8d103f38b6ce3b8b75557af15
+  languageName: node
+  linkType: hard
+
 "react-native-gesture-handler@npm:~1.10.2":
   version: 1.10.3
   resolution: "react-native-gesture-handler@npm:1.10.3"
@@ -8887,6 +8962,22 @@ __metadata:
     invariant: ^2.2.4
     prop-types: ^15.7.2
   checksum: fd06147df96fe0b38752c653a2d4bf49570396922719939a31b494197fd30e6775e4c5e73f889af808204dcfbc087eb00f31a0b676c838d5a35e2b017ae9a419
+  languageName: node
+  linkType: hard
+
+"react-native-markdown-renderer@npm:^3.2.8":
+  version: 3.2.8
+  resolution: "react-native-markdown-renderer@npm:3.2.8"
+  dependencies:
+    "@types/markdown-it": ^0.0.4
+    "@types/react-native": ">=0.50.0"
+    markdown-it: ^8.4.0
+    prop-types: ^15.5.10
+    react-native-fit-image: ^1.5.2
+  peerDependencies:
+    react: ^16.2.0
+    react-native: ^0.50.4
+  checksum: 962778a79aa4a70e94ea135c79eb2bb64efb0c5eabb71cc791a0d053022334b67a31d91a7f0e019de6a06fc833f94f41a623ed4e26332c7b679e197ade25ad63
   languageName: node
   linkType: hard
 
@@ -10500,6 +10591,13 @@ __metadata:
   version: 0.7.31
   resolution: "ua-parser-js@npm:0.7.31"
   checksum: e2f8324a83d1715601576af85b2b6c03890699aaa7272950fc77ea925c70c5e4f75060ae147dc92124e49f7f0e3d6dd2b0a91e7f40d267e92df8894be967ba8b
+  languageName: node
+  linkType: hard
+
+"uc.micro@npm:^1.0.1, uc.micro@npm:^1.0.5":
+  version: 1.0.6
+  resolution: "uc.micro@npm:1.0.6"
+  checksum: 6898bb556319a38e9cf175e3628689347bd26fec15fc6b29fa38e0045af63075ff3fea4cf1fdba9db46c9f0cbf07f2348cd8844889dd31ebd288c29fe0d27e7a
   languageName: node
   linkType: hard
 
