@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { View, ViewProps } from "react-native";
-import { Paragraph } from "../../typography/Paragraph";
+import { Heading } from "../../typography/Heading";
 
 interface DrawerSectionProps extends ViewProps {
   children: React.ReactNode;
@@ -19,7 +19,7 @@ export const DrawerSection: React.FC<DrawerSectionProps> = ({
   }
 
   const heading = useMemo(
-    () => (title ? <Paragraph>{title}</Paragraph> : <></>),
+    () => (title ? <Heading>{title}</Heading> : <></>),
     [title]
   );
 
