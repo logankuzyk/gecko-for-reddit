@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { View, TouchableOpacity } from "react-native";
 
 import { Paragraph } from "../../typography/Paragraph";
@@ -19,18 +19,19 @@ export const Comment: React.FC<CommentProps> = ({
   submissionFullname,
 }) => {
   if (data.type === "comment") {
-    const { author, date, body, scoreString, depth } = data;
+    const { author, date, body, scoreString } = data;
+    const depth = useMemo(() => (data.depth ? data.depth : 0), [data.depth]);
     const [showChildren, setShowChildren] = useState<boolean>(true);
     const [menuExpanded, setMenuExpanded] = useState<boolean>(false);
-    const paddingRight = depth * 18;
+    const paddingRight = useMemo(() => depth * 18, [depth]);
 
-    const handlePress = () => {
+    const handlePress = useCallback(() => {
       setMenuExpanded(!menuExpanded);
-    };
+    }, [menuExpanded]);
 
-    const handleLongPress = () => {
+    const handleLongPress = useCallback(() => {
       setShowChildren(!showChildren);
-    };
+    }, [showChildren]);
 
     return (
       <>
