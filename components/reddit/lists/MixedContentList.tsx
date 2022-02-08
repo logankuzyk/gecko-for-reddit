@@ -2,7 +2,7 @@ import React from "react";
 import { ListRenderItem } from "react-native";
 
 import { RootComment } from "../comments/RootComment";
-import { SubmissionCard } from "../submissions/Submission";
+import { Submission } from "../submissions/Submission";
 import {
   RedditSubmission,
   RedditComment,
@@ -13,7 +13,7 @@ export const renderItem: ListRenderItem<
   RedditSubmission | RedditComment | MoreChildren
 > = ({ item }) => {
   if (item.type === "submission") {
-    return <SubmissionCard submission={item} />;
+    return <Submission submission={item} />;
   } else {
     return <RootComment data={item} />;
   }
