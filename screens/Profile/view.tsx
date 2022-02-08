@@ -13,10 +13,12 @@ import { Seperator } from "../../components/reddit/lists/Seperator";
 interface ProfileScreenViewProps {
   content: Array<RedditComment | RedditSubmission | MoreChildren>;
   user: RedditUser;
+  onListEnd: () => void;
 }
 
 export const ProfileScreenView: React.FC<ProfileScreenViewProps> = ({
   content,
+  onListEnd,
 }) => {
   return (
     <FlatList
@@ -24,6 +26,8 @@ export const ProfileScreenView: React.FC<ProfileScreenViewProps> = ({
       keyExtractor={({ id }) => id}
       renderItem={renderItem}
       ItemSeparatorComponent={Seperator}
+      onEndReachedThreshold={0}
+      onEndReached={onListEnd}
     />
   );
 };

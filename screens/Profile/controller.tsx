@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { StackNavigationProp } from "@react-navigation/stack";
 
 import { Loading } from "../../components/Loading";
@@ -16,10 +16,22 @@ export const ProfileScreenController: React.FC<
   ProfileScreenControllerProps
 > = ({ username }) => {
   const user = useUser(username);
-  const content = useProfile(username);
+  const { isSuccess, fetchNextPage, data } = useProfile(username);
 
-  if (content.isSuccess && user.data) {
-    return <ProfileScreenView user={user.data} content={content.data} />;
+  const pages = data ? data.pages.map((page) => page.data) : [];
+
+  const content = Array.prototype.concat.apply([], pages);
+
+  const onListEnd = useCallback(() => fetchNextPage(), [fetchNextPage]);
+
+  if (isSuccess && user.data) {
+    return (
+      <ProfileScreenView
+        user={user.data}
+        content={content}
+        onListEnd={onListEnd}
+      />
+    );
   } else {
     return <Loading />;
   }
