@@ -5,14 +5,14 @@ import { TouchableIcon } from "../icons/TouchableIcon";
 import { ActionDisplay } from "../../types/app";
 import { TouchableListEntry } from "../reddit/lists/TouchableListEntry";
 
-export interface SettingsProps {
+export interface SubredditProps {
   type: ActionDisplay;
   name?: "frontpage" | "all" | "popular";
   subreddit?: string;
   uri?: string;
 }
 
-export const Subreddit: React.FC<SettingsProps> = ({
+export const Subreddit: React.FC<SubredditProps> = ({
   type,
   name,
   subreddit,
