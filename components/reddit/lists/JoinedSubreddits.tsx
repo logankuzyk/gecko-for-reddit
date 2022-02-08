@@ -1,25 +1,15 @@
-import React, { useCallback } from "react";
-import { FlatList, ScrollView } from "react-native-gesture-handler";
-import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import { ScrollView } from "react-native-gesture-handler";
 
-import { Icon } from "../../icons/Icon";
-import { Caption } from "../../typography/Caption";
+import { Subreddit } from "../../actions/Subreddit";
 import { useJoinedSubreddits } from "../../../hooks/useJoinedSubreddits";
-import { TouchableListEntry } from "./TouchableListEntry";
 
 export const JoinedSubreddits: React.FC = () => {
   const subreddits = useJoinedSubreddits();
-  const navigation = useNavigation();
-
-  const handlePress = useCallback(
-    (subreddit: string) => {
-      navigation.navigate("Subreddit", { subreddit });
-    },
-    [navigation]
-  );
 
   if (subreddits.data) {
     return (
+      // Allows main drawer scroll to work properly.
       <ScrollView
         horizontal={true}
         contentContainerStyle={{
@@ -28,17 +18,14 @@ export const JoinedSubreddits: React.FC = () => {
           flexDirection: "column",
         }}
       >
-        {subreddits.data ? (
-          subreddits.data.map((subreddit) => (
-            <TouchableListEntry
-              onPress={() => handlePress(subreddit.display_name)}
-              type="subreddit"
-              title={subreddit.display_name}
-            />
-          ))
-        ) : (
-          <></>
-        )}
+        {subreddits.data.map((subreddit) => (
+          <Subreddit
+            type="drawer"
+            uri={subreddit.community_icon}
+            subreddit={subreddit.display_name}
+            key={subreddit.display_name}
+          />
+        ))}
       </ScrollView>
     );
   } else {

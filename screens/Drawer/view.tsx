@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { StatusBar, ScrollView, View } from "react-native";
 
+import { useRedditContext } from "../../contexts/RedditContext";
 import { DrawerSection } from "../../components/navigation/drawer/DrawerSection";
 import { DrawerActions } from "../../components/navigation/drawer/DrawerActions";
 import { DrawerHeader } from "../../components/navigation/drawer/DrawerHeader";
@@ -21,8 +22,12 @@ export const RootDrawerScreenView: React.FC<RootDrawerScreenViewProps> = ({
   users,
   subreddits,
 }) => {
-  const showMatchingUsers = users && users.length > 0;
-  const showMatchingSubreddits = subreddits && subreddits.length > 0;
+  const { isLoggedIn } = useRedditContext();
+  const showMatchingUsers = useMemo(() => users && users.length > 0, []);
+  const showMatchingSubreddits = useMemo(
+    () => subreddits && subreddits.length > 0,
+    []
+  );
 
   return (
     <View style={{ marginTop: StatusBar.currentHeight }}>
@@ -48,7 +53,7 @@ export const RootDrawerScreenView: React.FC<RootDrawerScreenViewProps> = ({
         >
           <SearchResults entries={subreddits} />
         </DrawerSection>
-        <DrawerSection title="Subscribed" show={true}>
+        <DrawerSection title="Subscribed" show={isLoggedIn}>
           <JoinedSubreddits />
         </DrawerSection>
       </ScrollView>
