@@ -23,10 +23,10 @@ export const RootDrawerScreenView: React.FC<RootDrawerScreenViewProps> = ({
   subreddits,
 }) => {
   const { isLoggedIn } = useRedditContext();
-  const showMatchingUsers = useMemo(() => users && users.length > 0, []);
+  const showMatchingUsers = useMemo(() => users && users.length > 0, [users]);
   const showMatchingSubreddits = useMemo(
     () => subreddits && subreddits.length > 0,
-    []
+    [subreddits]
   );
 
   return (

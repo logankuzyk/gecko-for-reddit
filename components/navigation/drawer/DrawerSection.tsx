@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { View, ViewProps } from "react-native";
 import { Paragraph } from "../../typography/Paragraph";
 
@@ -18,7 +18,10 @@ export const DrawerSection: React.FC<DrawerSectionProps> = ({
     return <></>;
   }
 
-  const heading = title ? <Paragraph>{title}</Paragraph> : <></>;
+  const heading = useMemo(
+    () => (title ? <Paragraph>{title}</Paragraph> : <></>),
+    [title]
+  );
 
   return (
     <View style={{ marginHorizontal: 16 }} {...props}>
