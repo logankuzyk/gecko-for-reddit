@@ -15,6 +15,7 @@ import NotFoundScreen from "../screens/NotFoundScreen";
 import AuthScreen from "../screens/AuthScreen";
 import { DrawerParamList, RootStackParamList } from "../types/navigation";
 import LinkingConfiguration from "./LinkingConfiguration";
+import SettingsScreen from "../screens/Settings";
 import SubredditScreen from "../screens/Subreddit";
 import CommentsScreen from "../screens/Comments";
 import ProfileScreen from "../screens/Profile";
@@ -47,6 +48,7 @@ const StackNavigator = () => {
       <Stack.Screen name="Subreddit" component={SubredditScreen} />
       <Stack.Screen name="Comments" component={CommentsScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="Settings" component={SettingsScreen} />
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}

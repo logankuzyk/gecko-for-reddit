@@ -3,6 +3,7 @@ import { View, ViewProps } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { Subreddit } from "../../actions/Subreddit";
+import { Settings } from "../../actions/Settings";
 import { useCurrentUser } from "../../../hooks/useCurrentUser";
 import { TouchableListEntry } from "../../reddit/lists/TouchableListEntry";
 import { useRedditContext } from "../../../contexts/RedditContext";
@@ -56,6 +57,7 @@ export const DrawerActions: React.FC<ViewProps> = ({ ...props }) => {
       />
       <Subreddit type="drawer" name="all" />
       <Subreddit type="drawer" name="popular" />
+      <Settings type="drawer" />
     </View>
   );
 };
