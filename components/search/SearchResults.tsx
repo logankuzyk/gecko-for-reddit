@@ -1,8 +1,8 @@
 import React from "react";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 
-import { ThingToLoad } from "../../../types/reddit";
-import { renderItem } from "../../SearchPreview";
+import { ThingToLoad } from "../../types/reddit";
+import { renderItem } from "./SearchPreview";
 
 interface SearchResultsProps {
   entries: Array<ThingToLoad> | undefined;

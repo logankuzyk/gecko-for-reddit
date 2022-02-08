@@ -1,6 +1,5 @@
 import React from "react";
-import { TextInput, View } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { TextInput } from "react-native";
 
 interface SearchBarProps {
   placeholder: string;

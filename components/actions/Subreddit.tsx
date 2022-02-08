@@ -9,7 +9,7 @@ export interface SubredditProps {
   type: ActionDisplay;
   name?: "frontpage" | "all" | "popular";
   subreddit?: string;
-  uri?: string;
+  uri?: string | null;
 }
 
 export const Subreddit: React.FC<SubredditProps> = ({
