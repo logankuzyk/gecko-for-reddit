@@ -29,7 +29,9 @@ export const LoadMoreChildren: React.FC<LoadMoreChildrenProps> = ({
     setShouldLoad(true);
   };
 
-  if (!comments.data) {
+  if (numberToLoad === 0) {
+    return <></>;
+  } else if (!comments.data) {
     return (
       <ChildIndent depth={moreChildren.depth}>
         <TouchableOpacity
@@ -40,7 +42,7 @@ export const LoadMoreChildren: React.FC<LoadMoreChildrenProps> = ({
         </TouchableOpacity>
       </ChildIndent>
     );
-  } else if (Array.isArray(comments.data)) {
+  } else {
     return (
       <>
         {comments.data.map((comment) => (
@@ -51,14 +53,6 @@ export const LoadMoreChildren: React.FC<LoadMoreChildrenProps> = ({
           />
         ))}
       </>
-    );
-  } else {
-    return (
-      <Comment
-        data={comments.data}
-        key={comments.data.id}
-        submissionFullname={submissionFullname}
-      />
     );
   }
 };

@@ -14,9 +14,7 @@ const fetchMoreChildren = async (
   moreChildren: MoreChildren,
   linkFullname: string,
   modhash: string
-): Promise<
-  RedditComment | MoreChildren | Array<RedditComment | MoreChildren>
-> => {
+): Promise<Array<RedditComment | MoreChildren>> => {
   const params = new URLSearchParams();
   params.append("id", moreChildren.id);
   params.append("children", moreChildren.children.join(","));

@@ -55,7 +55,11 @@ export const Comment: React.FC<CommentProps> = ({
         {menuExpanded ? <CommentActionMenu comment={data} /> : <></>}
         {showChildren ? (
           data.replyTree.map((comment) => (
-            <Comment data={comment} submissionFullname={submissionFullname} />
+            <Comment
+              data={comment}
+              submissionFullname={submissionFullname}
+              key={comment.id}
+            />
           ))
         ) : (
           <></>
