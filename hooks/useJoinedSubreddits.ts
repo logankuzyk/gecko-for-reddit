@@ -9,11 +9,23 @@ import { useCurrentUser } from "./useCurrentUser";
 const fetchJoinedSubreddits = async (
   axios: AxiosInstance
 ): Promise<RedditSubreddit[]> => {
-  const res = await axios.get<Listing<ListedRawSubreddit>>(`/subreddits/mine`);
+  const res = await axios.get<Listing<ListedRawSubreddit>>(
+    `/subreddits/mine/subscriber?show=all&limit=100`
+  );
 
   const subreddits = res.data.data.children;
 
-  return subreddits.map((item) => parseSubreddit(item.data));
+  return subreddits
+    .sort((a, b) => {
+      if (a.data.display_name < b.data.display_name) {
+        return -1;
+      } else if (a.data.display_name > b.data.display_name) {
+        return 1;
+      } else {
+        return 0;
+      }
+    })
+    .map((item) => parseSubreddit(item.data));
 };
 
 export const useJoinedSubreddits = () => {
