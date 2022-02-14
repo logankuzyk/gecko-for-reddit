@@ -10,7 +10,7 @@ const castVote = async (
   fullName: string,
   modhash: string
 ) => {
-  const res = axios.post("/api/vote", {
+  const res = await axios.post("/api/vote", {
     dir: vote,
     id: fullName,
     uh: modhash,
