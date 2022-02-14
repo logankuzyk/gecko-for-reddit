@@ -1,7 +1,7 @@
 import React from "react";
 import { ListRenderItem } from "react-native";
 
-import { User } from "../actions/User";
+import { User } from "../actions/Profile";
 import { Subreddit } from "../actions/Subreddit";
 import { Loading } from "../Loading";
 import { ThingToLoad } from "../../types/reddit";
