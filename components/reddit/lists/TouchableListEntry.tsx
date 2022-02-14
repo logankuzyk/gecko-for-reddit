@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Icon } from "../../icons/Icon";
 import { ImageOrIcon } from "../../icons/ImageOrIcon";
 import { IconOptions } from "../../../types/app";
-import { Caption } from "../../typography/Caption";
+import { Label } from "../../typography/Label";
 
 interface TouchableListEntryProps {
   onPress: () => void;
@@ -34,7 +34,7 @@ export const TouchableListEntry: React.FC<TouchableListEntryProps> = ({
       ) : (
         <Icon type={type} />
       )}
-      <Caption>{title}</Caption>
+      <Label>{title}</Label>
     </TouchableOpacity>
   );
 };
