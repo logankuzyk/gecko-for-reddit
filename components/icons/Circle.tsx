@@ -14,7 +14,7 @@ export const Circle: React.FC = ({ children }) => {
         height,
         width,
         borderRadius,
-        backgroundColor: colors.grey["300"],
+        backgroundColor: colors.grey[200],
         alignItems: "center",
         justifyContent: "center",
       }}
